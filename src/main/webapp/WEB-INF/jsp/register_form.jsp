@@ -47,9 +47,9 @@
 			</div> 
 			
 			<div>
-			<form:label path="fullName">Your Name:</form:label>
-			<form:input path="fullName" />
-			<form:errors path="fullName" cssClass="error" />
+			<form:label path="userName">Your Name:</form:label>
+			<form:input path="userName" />
+			<form:errors path="userName" cssClass="error" />
 			</div>
 
 			

@@ -18,14 +18,11 @@
 </head>
 <body>
 <div align="center">
-<h2>Registration</h2>
-<form:form action="/startQuiz" method="get" modelAttribute="user">
+<h1>Result</h1>
+<form:form  modelAttribute="quiz">
 
 
-<span>Dear </span><span>${user.userName}</span>
-<span>Quiz Number:</span><span>${user.quizId}</span><span>&nbsp is going to start soon</span><br/><br/>
-<form:button>continue</form:button>
-
+<h2>Dear Player your Quiz result is Pass</h2>
 </form:form>
 </div>
 </body>

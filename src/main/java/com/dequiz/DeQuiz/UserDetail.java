@@ -1,16 +1,17 @@
 package com.dequiz.DeQuiz;
 
 
+
 import javax.validation.constraints.Size;
 
-public class User {
-	
+public class UserDetail {
+
 	@QuizIdConstraint
 	private Integer quizId;
 
 	
 	@Size(min = 1, max = 35, message = "Please enter name")
-	private String fullName;
+	private String userName;
 
 	public Integer getQuizId() {
 		return quizId;
@@ -23,15 +24,16 @@ public class User {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "user {Quiz Number =" + quizId + " Name = " + fullName + "}";
+		return "user {Quiz Number =" + quizId + " Name = " + userName + "}";
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
+	
 }
