@@ -1,7 +1,10 @@
 package com.dequiz.DeQuiz;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.sql.*;
+
+import com.dequiz.DeQuiz.DeQuizUserDBRepo;
 @Controller
 public class DeQuizSpringController {
 	
@@ -20,19 +24,26 @@ public class DeQuizSpringController {
 	}
 	@GetMapping("/joinQuiz")
 	private String showForm(@Valid Model model) {
-		UserDetail user = new UserDetail();
+		DeQuizUser user = new DeQuizUser();
 		model.addAttribute("user", user);
 		return "register_form";
 	}
-	
+	@Autowired
+	DeQuizUserDBRepo userRepo;
 	@PostMapping("/joinQuiz")
-	public String submitForm(@Valid @ModelAttribute("user") UserDetail user,
-								BindingResult bindingResult) {
+	public String submitForm(@Valid @ModelAttribute("user") DeQuizUser user,
+								BindingResult bindingResult,HttpSession session) {
 		System.out.println(user);
+		String usersession = session.getId();
 		if(bindingResult.hasErrors()) {
 			return "register_form";
 		}
 		else {
+			user.setDquSessionId(usersession);
+			user.setDquAnswer("");
+			user.setDquMarks(0); 
+			user.setDquTotalMarks(0);
+			userRepo.save(user);
 		return "register_success";
 		
 		}

@@ -41,15 +41,15 @@
 		<h2>Participants please enter details</h2>
 		<form:form action="/joinQuiz" method="post" modelAttribute="user">
 			<div>
-			<form:label path="quizId">Quiz#:</form:label>
-			<form:input path="quizId" type = "number" />
-			<form:errors path="quizId" cssClass="error" />
+			<form:label path="dquQuizId">Quiz#:</form:label>
+			<form:input path="dquQuizId" type = "number" />
+			<form:errors path="dquQuizId" cssClass="error" />
 			</div> 
 			
 			<div>
-			<form:label path="userName">Your Name:</form:label>
-			<form:input path="userName" />
-			<form:errors path="userName" cssClass="error" />
+			<form:label path="dquUserName">Your Name:</form:label>
+			<form:input path="dquUserName" />
+			<form:errors path="dquUserName" cssClass="error" />
 			</div>
 
 			

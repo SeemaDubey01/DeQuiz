@@ -22,8 +22,8 @@
 <form:form action="/startQuiz" method="get" modelAttribute="user">
 
 
-<span>Dear </span><span>${user.userName}</span>
-<span>Quiz Number:</span><span>${user.quizId}</span><span>&nbsp is going to start soon</span><br/><br/>
+<span>Dear </span><span>${user.dquUserName}</span>
+<span>Quiz Number:</span><span>${user.dquQuizId}</span><span>&nbsp is going to start soon</span><br/><br/>
 <form:button>continue</form:button>
 
 </form:form>
