@@ -20,8 +20,7 @@
 <div align="center">
 <h2>Registration</h2>
 <form:form action="/startQuiz" method="get" modelAttribute="user">
-
-
+<form:hidden path="dquUserId" value ="${user.dquUserId}"/>
 <span>Dear </span><span>${user.dquUserName}</span>
 <span>Quiz Number:</span><span>${user.dquQuizId}</span><span>&nbsp is going to start soon</span><br/><br/>
 <form:button>continue</form:button>
