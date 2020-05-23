@@ -58,10 +58,13 @@ public class DeQuizSpringController {
 
 	@GetMapping("/startQuiz")
 	private String showQuiz(@ModelAttribute("user") DeQuizUser user, Model model,
-			@RequestParam(defaultValue = "test") Integer dquUserId) {
+			@RequestParam(defaultValue = "test") Integer dquUserId,
+			@RequestParam(defaultValue = "test") Integer dquQuizId) {
 		List<DeQuizMaster> qlist = new ArrayList<DeQuizMaster>();
-		qlist = dequizMasterrepo.findAll();
-
+		//qlist = dequizMasterrepo.findAll();
+		System.out.println("Quiz id for master is--->>"+dquQuizId);
+		qlist = dequizMasterrepo.findByDeqmQuizId(dquQuizId);
+        System.out.println("list size of quiz master is-----"+qlist.size());
 		DeQuizMaster dquizMaster = qlist.get(1);
 		dquizMaster.setDquUserId(dquUserId);
 		model.addAttribute("dquizMaster", dquizMaster);
