@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JoinQuiz</title>
 <style type="text/css">
 	
@@ -37,9 +38,9 @@
 </style>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="font-size:5vw;">
 		<h2>Participants please enter details</h2>
-		<form:form action="/joinQuiz" method="post" modelAttribute="user">
+		<form:form action="/joinQuiz" method="post" modelAttribute="deQuizUser">
 			<div>
 			<form:label path="dquQuizId">Quiz#:</form:label>
 			<form:input path="dquQuizId" type = "number" />

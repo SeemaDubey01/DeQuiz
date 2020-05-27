@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz;
+package com.dequiz.DeQuiz.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +19,18 @@ public class DeQuizMaster {
 	private String deqmOption_c;
 	private String deqmOption_d; 
 	private String deqmAnswer;
+	private String deqmQuizActive;
+	
 	@Transient
 	private String selectedAnswer;
 	@Transient
 	private Integer dquUserId;
 
+/*
+    @OneToMany(targetEntity=DeQuizUser.class,cascade=CascadeType.ALL )
+    @JoinColumn(referencedColumnName="dquUserId")
+    private List<DeQuizUser> users = new ArrayList<DeQuizUser>();
+ */   
 	public Integer getDquUserId() {
 		return dquUserId;
 	}
@@ -83,6 +90,18 @@ public class DeQuizMaster {
 	}
 	public void setDeqmAnswer(String deqmAnswer) {
 		this.deqmAnswer = deqmAnswer;
+	}
+	public Integer getDeqmSrNbr() {
+		return deqmSrNbr;
+	}
+	public void setDeqmSrNbr(Integer deqmSrNbr) {
+		this.deqmSrNbr = deqmSrNbr;
+	}
+	public String getDeqmQuizActive() {
+		return deqmQuizActive;
+	}
+	public void setDeqmQuizActive(String deqmQuizActive) {
+		this.deqmQuizActive = deqmQuizActive;
 	}
 	@Override
 	public String toString() {

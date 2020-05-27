@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz;
+package com.dequiz.DeQuiz.validator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 
 public @interface QuizIdConstraint {
-	String message() default "Invalid Quiz id";
+	String message() default "Inactive Quiz id";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

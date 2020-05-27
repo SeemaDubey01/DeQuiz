@@ -1,10 +1,7 @@
 package com.dequiz.DeQuiz;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
+import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.dequiz.DeQuiz.DeQuizUserDBRepo;
+import com.dequiz.DeQuiz.dto.DeQuizMaster;
+import com.dequiz.DeQuiz.dto.DeQuizUser;
+import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
+import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
 
 @Controller
 public class DeQuizSpringController {
+	
 
+	@Autowired
+	DeQuizUserDBRepo deQuizUserRepo;
+	
+	@Autowired
+	DeQuizMasterDBRepo deQuizMasterRepo;
+	
 	@RequestMapping("/")
 	private String home() {
 		System.out.println("Going home....");
@@ -30,75 +35,74 @@ public class DeQuizSpringController {
 
 	@GetMapping("/joinQuiz")
 	private String showForm(@Valid Model model) {
-		DeQuizUser user = new DeQuizUser();
-		model.addAttribute("user", user);
+		DeQuizUser deQuizUser = new DeQuizUser();
+		model.addAttribute("deQuizUser", deQuizUser);
 		return "register_form";
 	}
 
-	@Autowired
-	DeQuizUserDBRepo userRepo;
 
 	@PostMapping("/joinQuiz")
-	public String submitForm(@Valid @ModelAttribute("user") DeQuizUser user, BindingResult bindingResult,
-			HttpSession session, Model model) {
-		String usersession = session.getId();
+	public String submitForm(@Valid @ModelAttribute("deQuizUser") DeQuizUser deQuizUser, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "register_form";
 		} else {
-			user.setDquSessionId(usersession);
-			user.setDquAnswer("");
-			user.setDquMarks(0);
-			user.setDquTotalMarks(0);
-			model.addAttribute("user", user);
-			userRepo.save(user);
-			return "register_success";
+			deQuizUser.setDquSessionId("Dummy session id");
+			deQuizUser.setDquAnswer("X");
+			deQuizUser.setDquMarks(0);
+			deQuizUser.setDquTotalMarks(0);
+			deQuizUser.setDquQuestionNo(0);
+			deQuizUser.setDquTotalMarks(0);
+			model.addAttribute("user", deQuizUser);
+			deQuizUserRepo.save(deQuizUser);
+			return "registerok";
 
 		}
 	}
 
-	@GetMapping("/startQuiz")
-	private String showQuiz(@ModelAttribute("user") DeQuizUser user, Model model,
-			@RequestParam(defaultValue = "test") Integer dquUserId,
-			@RequestParam(defaultValue = "test") Integer dquQuizId) {
-		List<DeQuizMaster> qlist = new ArrayList<DeQuizMaster>();
-		//qlist = dequizMasterrepo.findAll();
-		System.out.println("Quiz id for master is--->>"+dquQuizId);
-		qlist = dequizMasterrepo.findByDeqmQuizId(dquQuizId);
-        System.out.println("list size of quiz master is-----"+qlist.size());
-		DeQuizMaster dquizMaster = qlist.get(1);
-		dquizMaster.setDquUserId(dquUserId);
-		model.addAttribute("dquizMaster", dquizMaster);
-		return "start_quiz";
+	
+	
+	/* startquiz requires userId, quizId and questionNo*/
+	@PostMapping("/startquiz")
+	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {
+		System.out.println("inside startquiz get: " + deQuizUser);
+		Integer quizId = deQuizUser.getDquQuizId() * 100 + deQuizUser.getDquQuestionNo() + 1;
+		System.out.println("quizid: " + quizId);
+		DeQuizMaster deQuizMaster = new DeQuizMaster ();
+	
+		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(quizId);
+		if (!deQuizMasterMap.isPresent()){
+			return "finalresult";
+		}
+	
+		deQuizMaster = deQuizMasterMap.get();
+		deQuizMaster.setDquUserId(deQuizUser.getDquUserId());
+		model.addAttribute("deQuizMaster",deQuizMaster);
+		System.out.println("going to jsp-startquiz: " + deQuizMaster);
+		return "startquiz";
 	}
-
-	@Autowired
-	DeQuizMasterDBRepo dequizMasterrepo;
-
-	@PostMapping("/getResult")
-	private String showResult(@ModelAttribute("dquizMaster") DeQuizMaster dquizMaster, Model model) {
-		List<DeQuizMaster> qlist = new ArrayList<DeQuizMaster>();
-		qlist = dequizMasterrepo.findAll();
-		DeQuizMaster dquizMasterDB = qlist.get(1);
-		Integer userId = dquizMaster.getDquUserId();
-		DeQuizUser myUser = null;
-		userRepo.findById(userId);
-		Optional<DeQuizUser> optionalUser = userRepo.findById(userId);
-		if (optionalUser.isPresent()) {
-			myUser = optionalUser.get(); 
+	
+/*  showresult needs 4 parameters - quizId, questionNo, answer and userId*/
+	@PostMapping("/showresult")
+	private String showResult(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model){
+		System.out.println("inside startquiz post: " + deQuizMaster.getDquUserId());
+		System.out.println("Correct Ans: " +deQuizMaster.getDeqmAnswer() + " Selected:" + deQuizMaster.getSelectedAnswer());
+		
+		DeQuizUser deQuizUser = new DeQuizUser();
+		Optional<DeQuizUser> deQuizUserMap = deQuizUserRepo.findById(deQuizMaster.getDquUserId());
+		if (!deQuizUserMap.isPresent()){
+			return "error";
 		}
-		if (dquizMaster.getSelectedAnswer().equalsIgnoreCase(dquizMasterDB.getDeqmAnswer())) {
-			if (myUser != null) {
-				myUser.setDquAnswer(dquizMaster.getSelectedAnswer());
-				myUser.setDquMarks(10);
-				myUser.setDquTotalMarks(10);
-				userRepo.updateUser(myUser.getDquMarks(), myUser.getDquAnswer(), myUser.getDquTotalMarks(),
-						myUser.getDquUserId());
-			}
-
-			return "quiz_result_pass";
-		} else {
-			return "quiz_result_fail";
+		deQuizUser = deQuizUserMap.get();
+		deQuizUser.setDquQuestionNo(deQuizMaster.getDeqmQuestionNo());
+		deQuizUser.setDquMarks(0);
+		if(deQuizMaster.getDeqmAnswer().equals(deQuizMaster.getSelectedAnswer())) {
+			System.out.println("adding marks");
+			deQuizUser.setDquMarks(10);
+			deQuizUser.setDquTotalMarks(deQuizUser.getDquTotalMarks()+10);
+			deQuizUserRepo.save(deQuizUser);	
 		}
+		model.addAttribute("deQuizUser",deQuizUser);
+		return "showresult";
 	}
 
 }

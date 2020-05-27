@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JoinQuiz</title>
 <style type="text/css">
     form div {
@@ -19,12 +20,12 @@
 <body>
 <div align="center">
 <h2>Registration</h2>
-<form:form action="/startQuiz" method="get" modelAttribute="user">
-<form:hidden path="dquUserId" value ="${user.dquUserId}"/>
-<form:hidden path="dquQuizId" value ="${user.dquQuizId}"/>
+<form:form action="/startQuiz" method="get" modelAttribute="deQuizUser">
+<form:hidden path="dquUserId" value ="${deQuizUser.dquUserId}"/>
+<form:hidden path="dquQuizId" value ="${deQuizUser.dquQuizId}"/>
 
-<span>Dear </span><span>${user.dquUserName}</span>
-<span>Quiz Number:</span><span>${user.dquQuizId}</span><span>&nbsp is going to start soon</span><br/><br/>
+<span>Dear </span><span>${deQuizUser.dquUserName}</span>
+<span>Quiz Number:</span><span>${deQuizUser.dquQuizId}</span><span>&nbsp is going to start soon</span><br/><br/>
 <form:button>continue</form:button>
 
 </form:form>

@@ -1,10 +1,14 @@
-package com.dequiz.DeQuiz;
+package com.dequiz.DeQuiz.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
+
+import com.dequiz.DeQuiz.validator.QuizIdConstraint;
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -12,17 +16,27 @@ public class DeQuizUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer dquUserId;
+	@NotNull()
 	@QuizIdConstraint
 	private Integer dquQuizId;
-	@Size(min = 1, max = 35, message = "Please enter name")
+	@Size(min = 3, max = 35, message = "Please enter name")
 	private String dquUserName;
 	private String dquSessionId;
 	private Integer dquMarks;
 	private String dquAnswer;
 	private Integer dquTotalMarks;
+    
+	@Transient
+	private Integer dquQuestionNo;
 	
-	
-	
+	public Integer getDquQuestionNo() {
+		return dquQuestionNo;
+	}
+
+	public void setDquQuestionNo(Integer dquQuestionNo) {
+		this.dquQuestionNo = dquQuestionNo;
+	}
+
 	public DeQuizUser() {
 	}
 

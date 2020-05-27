@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz;
+package com.dequiz.DeQuiz.repo;
 
 import javax.transaction.Transactional;
 
@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.dequiz.DeQuiz.dto.DeQuizUser;
 
 @Repository
 public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {
@@ -19,5 +21,8 @@ public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {
 	@Modifying(clearAutomatically = true)
 	int updateUser(@Param("dquMarks") Integer dquMarks, @Param("dquAnswer") String dquAnswer,
 			@Param("dquTotalMarks") Integer dquTotalMarks, @Param("dquUserId") Integer dquUserId);
+	public DeQuizUser save (DeQuizUser user);
+	
+	
 
 }
