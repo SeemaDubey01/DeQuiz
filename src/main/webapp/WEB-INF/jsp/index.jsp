@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Welcome to DeQuiz</h1>
-<div align="center" style="font-size:5vw;">
+<div align="center" style="font-size:(5vw,min);">
 <a href="/joinQuiz">Join Quiz</a>
 </div>
 </body>

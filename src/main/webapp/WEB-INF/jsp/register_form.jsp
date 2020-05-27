@@ -38,7 +38,7 @@
 </style>
 </head>
 <body>
-	<div align="center" style="font-size:5vw;">
+	<div align="center" style="font-size:min(5vw,40);">
 		<h2>Participants please enter details</h2>
 		<form:form action="/joinQuiz" method="post" modelAttribute="deQuizUser">
 			<div>

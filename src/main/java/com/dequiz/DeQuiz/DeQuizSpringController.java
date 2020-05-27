@@ -66,18 +66,22 @@ public class DeQuizSpringController {
 	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {
 		System.out.println("inside startquiz get: " + deQuizUser);
 		Integer quizId = deQuizUser.getDquQuizId() * 100 + deQuizUser.getDquQuestionNo() + 1;
-		System.out.println("quizid: " + quizId);
+			
 		DeQuizMaster deQuizMaster = new DeQuizMaster ();
 	
 		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(quizId);
 		if (!deQuizMasterMap.isPresent()){
+			Optional <DeQuizUser> deQuizUserMap = deQuizUserRepo.findById(deQuizUser.getDquUserId());
+			if(deQuizUserMap.isPresent()) {
+				deQuizUser = deQuizUserMap.get();
+				model.addAttribute("deQuizUser",deQuizUser);
+			}
 			return "finalresult";
 		}
 	
 		deQuizMaster = deQuizMasterMap.get();
 		deQuizMaster.setDquUserId(deQuizUser.getDquUserId());
 		model.addAttribute("deQuizMaster",deQuizMaster);
-		System.out.println("going to jsp-startquiz: " + deQuizMaster);
 		return "startquiz";
 	}
 	

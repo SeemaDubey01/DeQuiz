@@ -10,7 +10,7 @@
 </head>
 <body>
 <H2>Registration Status <span></span></H2>
-<div align="center" style="font-size:5vw;">
+<div align="center" style="font-size:min(5vw,40);">
 <form:form action="/startquiz" method="post"  modelAttribute="deQuizUser">
 	<form:hidden path="dquQuizId" value ="${deQuizUser.dquQuizId}"/>
 	<form:hidden path="dquUserId" value ="${deQuizUser.dquUserId}"/>

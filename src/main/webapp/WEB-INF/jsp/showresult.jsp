@@ -10,7 +10,7 @@
 </head>
 <body>
 <div><H1>${deQuizUser.dquUserName}</H1></div>
-<div align="center" style="font-size:5vw;">
+<div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
 <form:form action="/startquiz"  method="post" modelAttribute="deQuizUser">
   <form:hidden path="dquUserId" value="${deQuizUser.dquUserId}"/>

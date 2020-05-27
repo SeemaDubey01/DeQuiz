@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div align="center" style="font-size:5vw;">
+<div align="center" style="font-size:min(5vw,40);">
 <H1> Error Page...............</H1><p/>
 <H2>Start again.... <a href="/">Home</a></H2>
 </div>
