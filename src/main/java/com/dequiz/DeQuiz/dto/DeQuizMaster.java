@@ -25,6 +25,8 @@ public class DeQuizMaster {
 	private String selectedAnswer;
 	@Transient
 	private Integer dquUserId;
+	@Transient
+	private Integer dquMarks;
 
 /*
     @OneToMany(targetEntity=DeQuizUser.class,cascade=CascadeType.ALL )
@@ -102,6 +104,12 @@ public class DeQuizMaster {
 	}
 	public void setDeqmQuizActive(String deqmQuizActive) {
 		this.deqmQuizActive = deqmQuizActive;
+	}
+	public Integer getDquMarks() {
+		return dquMarks;
+	}
+	public void setDquMarks(Integer dquMarks) {
+		this.dquMarks = dquMarks;
 	}
 	@Override
 	public String toString() {

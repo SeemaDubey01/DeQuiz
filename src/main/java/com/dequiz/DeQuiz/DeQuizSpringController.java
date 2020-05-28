@@ -88,7 +88,6 @@ public class DeQuizSpringController {
 /*  showresult needs 4 parameters - quizId, questionNo, answer and userId*/
 	@PostMapping("/showresult")
 	private String showResult(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model){
-		System.out.println("inside startquiz post: " + deQuizMaster.getDquUserId());
 		System.out.println("Correct Ans: " +deQuizMaster.getDeqmAnswer() + " Selected:" + deQuizMaster.getSelectedAnswer());
 		
 		DeQuizUser deQuizUser = new DeQuizUser();
@@ -100,9 +99,9 @@ public class DeQuizSpringController {
 		deQuizUser.setDquQuestionNo(deQuizMaster.getDeqmQuestionNo());
 		deQuizUser.setDquMarks(0);
 		if(deQuizMaster.getDeqmAnswer().equals(deQuizMaster.getSelectedAnswer())) {
-			System.out.println("adding marks");
-			deQuizUser.setDquMarks(10);
-			deQuizUser.setDquTotalMarks(deQuizUser.getDquTotalMarks()+10);
+			System.out.println("adding marks " + deQuizMaster.getDquMarks());
+			deQuizUser.setDquMarks(deQuizMaster.getDquMarks());
+			deQuizUser.setDquTotalMarks(deQuizUser.getDquTotalMarks()+deQuizUser.getDquMarks());
 			deQuizUserRepo.save(deQuizUser);	
 		}
 		model.addAttribute("deQuizUser",deQuizUser);

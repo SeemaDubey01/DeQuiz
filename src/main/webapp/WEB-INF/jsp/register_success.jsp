@@ -24,8 +24,8 @@
 <form:hidden path="dquUserId" value ="${deQuizUser.dquUserId}"/>
 <form:hidden path="dquQuizId" value ="${deQuizUser.dquQuizId}"/>
 
-<span>Dear </span><span>${deQuizUser.dquUserName}</span>
-<span>Quiz Number:</span><span>${deQuizUser.dquQuizId}</span><span>&nbsp is going to start soon</span><br/><br/>
+Dear ${deQuizUser.dquUserName}
+Quiz Number: ${deQuizUser.dquQuizId} is going to start soon<br/><br/>
 <form:button>continue</form:button>
 
 </form:form>
