@@ -10,15 +10,17 @@
 <script>
 	var remainingSec = 10;
 	var marks = 1000;
-	setInterval(function(){
-		marks = marks - 10;
-		if (marks < 0 ) marks =0;
-		$("#dquMarks").attr("value",marks);
-	},100);
+	
 	setInterval(function(){
 		$("#timer").text (remainingSec);
 		remainingSec = remainingSec - 1;
 		if (remainingSec < 0 ) $("#quizform").submit();
+		
+		setInterval(function(){
+			marks = marks - 2;
+			if (marks < 0 ) marks =0;
+			$("#dquMarks").attr("value",marks);
+		},100);
 	},1000);
 </script>
 <title>DeQuiz: Start Quiz</title>
