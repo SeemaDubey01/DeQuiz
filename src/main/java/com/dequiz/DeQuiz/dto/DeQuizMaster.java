@@ -20,6 +20,7 @@ public class DeQuizMaster {
 	private String deqmOption_d; 
 	private String deqmAnswer;
 	private String deqmQuizActive;
+	private Integer deqmTimer;
 	
 	@Transient
 	private String selectedAnswer;
@@ -110,6 +111,12 @@ public class DeQuizMaster {
 	}
 	public void setDquMarks(Integer dquMarks) {
 		this.dquMarks = dquMarks;
+	}
+	public Integer getDeqmTimer() {
+		return deqmTimer;
+	}
+	public void setDeqmTimer(Integer deqmTimer) {
+		this.deqmTimer = deqmTimer;
 	}
 	@Override
 	public String toString() {

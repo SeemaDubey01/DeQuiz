@@ -10,7 +10,8 @@
 <script>
 	var remainingSec = 10;
 	var marks = 1000;
-	
+	remainingSec = [[${deQuizMaster.deqmTimer}]];
+	$("#msg").text (remainingSec);
 	setInterval(function(){
 		$("#timer").text (remainingSec);
 		remainingSec = remainingSec - 1;
@@ -32,6 +33,7 @@
 <form:form id="quizform" action="/showresult"  method="post" modelAttribute="deQuizMaster">
   <div>
   <div>${deQuizMaster.deqmQuestion}</div><p/>
+  <div>${deQuizMaster.deqmTimer} seconds</div><p/>
   </div>
   <div>
   <form:hidden path="deqmQuizId" value="${deQuizMaster.deqmQuizId}"/>
@@ -57,7 +59,7 @@
   <form:button>submit</form:button>
 </form:form><p/>
 	<table Style="border:1px solid black;">
-		<tr><td>Time remaining: <span id="timer">10</span> Seconds</td></tr>
+		<tr><td>Time remaining: <span id="timer">${deQuizMaster.deqmTimer}</span> Seconds</td></tr>
 	</table>
 </div>
 </body>
