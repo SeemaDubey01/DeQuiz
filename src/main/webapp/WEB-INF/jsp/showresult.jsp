@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,10 +17,13 @@
   <form:hidden path="dquUserId" value="${deQuizUser.dquUserId}"/>
   <form:hidden path="dquQuizId" value="${deQuizUser.dquQuizId}"/>
   <form:hidden path="dquQuestionNo" value="${deQuizUser.dquQuestionNo}"/>
+  <form:hidden path="dquTotalMarks" value="${deQuizUser.dquTotalMarks}"/>
   <form:label path="dquMarks">Your points for last question is:<b>${deQuizUser.dquMarks}</b></form:label><p/>
   <form:label path="dquTotalMarks">Your total points for this is:<b>${deQuizUser.dquTotalMarks}</b></form:label> <p/>
 	<form:button>Next Question</form:button>	
 </form:form>
+<p>Correct Answer:${deQuizUser.dquCorrectAns}</p>
+<p/><span id="userMessage" ></span>
 </div>
 </body>
 </html>

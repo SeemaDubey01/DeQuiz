@@ -16,5 +16,5 @@
 <form:button >Join other quiz</form:button>
 </form:form>
 </div>
-</body>
+</body> 
 </html>

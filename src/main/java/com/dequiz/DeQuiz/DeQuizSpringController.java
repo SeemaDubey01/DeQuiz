@@ -1,9 +1,10 @@
 package com.dequiz.DeQuiz;
 
 
-import java.util.Optional;
-import javax.validation.Valid;
 
+import java.util.Optional;
+
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,8 +61,7 @@ public class DeQuizSpringController {
 	}
 
 	
-	
-	/* startquiz requires userId, quizId and questionNo*/
+	/* startquiz requires userId, quizId, questionNo and totalMarks*/
 	@PostMapping("/startquiz")
 	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {
 		System.out.println("inside startquiz get: " + deQuizUser);
@@ -71,11 +71,6 @@ public class DeQuizSpringController {
 	
 		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(quizId);
 		if (!deQuizMasterMap.isPresent()){
-			Optional <DeQuizUser> deQuizUserMap = deQuizUserRepo.findById(deQuizUser.getDquUserId());
-			if(deQuizUserMap.isPresent()) {
-				deQuizUser = deQuizUserMap.get();
-				model.addAttribute("deQuizUser",deQuizUser);
-			}
 			return "finalresult";
 		}
 	
@@ -98,6 +93,26 @@ public class DeQuizSpringController {
 		deQuizUser = deQuizUserMap.get();
 		deQuizUser.setDquQuestionNo(deQuizMaster.getDeqmQuestionNo());
 		deQuizUser.setDquMarks(0);
+		switch (deQuizMaster.getDeqmAnswer()) {
+		case "a":
+		case "A":
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			break;
+		case "b":
+		case "B":
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			break;
+		case "c":
+		case "C":
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			break;
+		case "d":
+		case "D":
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			break;
+		default:
+			deQuizUser.setDquCorrectAns("Anser not given by Quiz Master");
+		}
 		if(deQuizMaster.getDeqmAnswer().equals(deQuizMaster.getSelectedAnswer())) {
 			System.out.println("adding marks " + deQuizMaster.getDquMarks());
 			deQuizUser.setDquMarks(deQuizMaster.getDquMarks());
@@ -107,5 +122,6 @@ public class DeQuizSpringController {
 		model.addAttribute("deQuizUser",deQuizUser);
 		return "showresult";
 	}
+	
 
 }

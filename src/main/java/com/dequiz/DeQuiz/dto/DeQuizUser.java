@@ -25,8 +25,10 @@ public class DeQuizUser {
 	private Integer dquMarks;
 	private String dquAnswer;
 	private Integer dquTotalMarks;
-    
+	
 	@Transient
+	private String dquCorrectAns;
+    @Transient
 	private Integer dquQuestionNo;
 	
 	public Integer getDquQuestionNo() {
@@ -94,6 +96,14 @@ public class DeQuizUser {
 
 	public void setDquMarks(Integer dquMarks) {
 		this.dquMarks = dquMarks;
+	}
+
+	public String getDquCorrectAns() {
+		return dquCorrectAns;
+	}
+
+	public void setDquCorrectAns(String dquCorrectAns) {
+		this.dquCorrectAns = dquCorrectAns;
 	}
 
 	@Override
