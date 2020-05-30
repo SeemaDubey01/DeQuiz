@@ -100,15 +100,15 @@ public class DeQuizSpringController {
 			break;
 		case "b":
 		case "B":
-			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_b());
 			break;
 		case "c":
 		case "C":
-			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_c());
 			break;
 		case "d":
 		case "D":
-			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_a());
+			deQuizUser.setDquCorrectAns(deQuizMaster.getDeqmOption_d());
 			break;
 		default:
 			deQuizUser.setDquCorrectAns("Anser not given by Quiz Master");
