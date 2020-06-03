@@ -9,7 +9,7 @@ import javax.persistence.Transient;
 @Entity
 public class DeQuizMaster {
 	@Id
-	
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer deqmSrNbr;
 	private Integer deqmQuizId;
 	private Integer deqmQuestionNo;

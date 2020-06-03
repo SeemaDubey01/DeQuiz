@@ -119,7 +119,7 @@ public class DeQuizSpringController {
 		default:
 			deQuizUser.setDquCorrectAns("Anser not given by Quiz Master");
 		}
-		if(deQuizMaster.getDeqmAnswer().equals(deQuizMaster.getSelectedAnswer())) {
+		if(deQuizMaster.getDeqmAnswer().equalsIgnoreCase(deQuizMaster.getSelectedAnswer())) {
 			System.out.println("adding marks " + deQuizMaster.getDquMarks());
 			deQuizUser.setDquMarks(deQuizMaster.getDquMarks());
 			deQuizUser.setDquTotalMarks(deQuizUser.getDquTotalMarks()+deQuizUser.getDquMarks());
