@@ -61,7 +61,7 @@ public class DeQuizSpringController {
 	}
 
 	
-	/* startquiz requires userId, quizId, questionNo and totalMarks*/
+	/* startquiz requires userId, quizId and questionNo */
 	@PostMapping("/startquiz")
 	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {
 		System.out.println("inside startquiz get: " + deQuizUser);
@@ -71,6 +71,12 @@ public class DeQuizSpringController {
 	
 		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(quizId);
 		if (!deQuizMasterMap.isPresent()){
+			Optional <DeQuizUser> deQuizUserMap = deQuizUserRepo.findById(deQuizUser.getDquUserId());
+			if (deQuizUserMap.isPresent()){
+				deQuizUser = deQuizUserMap.get();
+				System.out.println("final: " + deQuizUser);
+				model.addAttribute("deQuizUser",deQuizUser);
+			}
 			return "finalresult";
 		}
 	
@@ -121,6 +127,22 @@ public class DeQuizSpringController {
 		}
 		model.addAttribute("deQuizUser",deQuizUser);
 		return "showresult";
+	}
+	
+	@RequestMapping("/aboutUs")
+	private String aboutUs() {
+		System.out.println("Going aboutUs....");
+		return "aboutUs";
+	}
+	@RequestMapping("/admin")
+	private String admin() {
+		System.out.println("Going admin....");
+		return "admin";
+	}
+	@RequestMapping("/contactUs")
+	private String contactUs() {
+		System.out.println("Going contactUs....");
+		return "contactUs";
 	}
 	
 

@@ -12,9 +12,9 @@ import com.sun.istack.NotNull;
 
 
 @Entity
-public class DeQuizUser {
+public class DeQuizUser  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Integer dquUserId;
 	@NotNull()
 	@QuizIdConstraint
@@ -109,7 +109,7 @@ public class DeQuizUser {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "userId = " + dquUserId + "quizId: " + dquQuizId + " userName: " + dquUserName + " session id: " + dquSessionId + " marks: " + dquMarks ;
+		return "userId = " + dquUserId + " quizId: " + dquQuizId + " userName: " + dquUserName + " marks: " + dquTotalMarks;
 	}
 	
 		
