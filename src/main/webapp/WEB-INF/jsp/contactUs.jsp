@@ -14,7 +14,12 @@
 <H2>contactUs</H2><p/>
 <h3>For further information please contact us on below email address</h3>
 <div align="center" style="font-size:(5vw,min);">
-
+<table Style="border:1px solid black;">
+<tr><td><a href="/">Home</a></td>
+<td><a href="/aboutUs">About Us</a></td>
+<td><a href="/joinQuiz">Join Quiz</a></td>
+<td><a href="/admin">Admin</a></td>
+<td><a href="/contactUs">Contact Us</a></td></tr>
 </table>
 </div>
 </body>
