@@ -2,8 +2,10 @@ package com.dequiz.DeQuiz.repo;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.dequiz.DeQuiz.dto.DeQuizMaster;
+import org.springframework.stereotype.Repository;
 
+import com.dequiz.DeQuiz.dto.DeQuizMaster;
+@Repository
 public interface DeQuizMasterDBRepo extends JpaRepository <DeQuizMaster, Integer>{
 	
 //	@Transactional

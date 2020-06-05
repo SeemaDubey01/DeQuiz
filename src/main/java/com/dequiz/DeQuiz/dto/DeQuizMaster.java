@@ -9,7 +9,6 @@ import javax.persistence.Transient;
 @Entity
 public class DeQuizMaster {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer deqmSrNbr;
 	private Integer deqmQuizId;
 	private Integer deqmQuestionNo;
@@ -125,6 +124,17 @@ public class DeQuizMaster {
 				" question: " + deqmQuestion + 
 				" a: " + deqmOption_a + " b: " + deqmOption_b + " c: " + deqmOption_c
 				+ " d: " + deqmOption_d + " ans: " + deqmAnswer ;
+	}
+	
+	public Integer nextQustionNo () {
+		deqmQuestionNo = deqmQuestionNo + 1;
+		deqmQuestion = " ";
+		deqmOption_a = " ";
+		deqmOption_b = " ";
+		deqmOption_c = " ";
+		deqmOption_d = " ";
+		deqmAnswer = " ";
+		return deqmQuestionNo;
 	}
 	
 }

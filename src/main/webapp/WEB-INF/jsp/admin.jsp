@@ -11,8 +11,8 @@
 </head>
 <body>
 <h1>Welcome to DeQuiz</h1><p/>
-<H2>admin</H2><p/>
-<h3>For any technical issues please contact our admin </h3>
+<H2>Admin Login</H2><p/>
+<a href="/adminlogin"> Admin LogIn</a>
 <div align="center" style="font-size:(5vw,min);">
 <table Style="border:1px solid black;">
 <tr><td><a href="/">Home</a></td>

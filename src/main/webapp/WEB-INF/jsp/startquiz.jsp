@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-<script>
+<script type="text/javascript">
 	var remainingSec = 10;
 	var marks = 1000;
 	remainingSec = [[${deQuizMaster.deqmTimer}]];

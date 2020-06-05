@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.dto.DeQuizUser;
 import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
@@ -27,13 +26,13 @@ public class DeQuizSpringController {
 	
 	@Autowired
 	DeQuizMasterDBRepo deQuizMasterRepo;
-	
+/*	
 	@RequestMapping("/")
 	private String home() {
 		System.out.println("Going home....");
 		return "index";
 	}
-
+*/
 	@GetMapping("/joinQuiz")
 	private String showForm(@Valid Model model) {
 		DeQuizUser deQuizUser = new DeQuizUser();
@@ -128,22 +127,18 @@ public class DeQuizSpringController {
 		model.addAttribute("deQuizUser",deQuizUser);
 		return "showresult";
 	}
-	
+	/*
 	@RequestMapping("/aboutUs")
 	private String aboutUs() {
 		System.out.println("Going aboutUs....");
 		return "aboutUs";
 	}
-	@RequestMapping("/admin")
-	private String admin() {
-		System.out.println("Going admin....");
-		return "admin";
-	}
+
 	@RequestMapping("/contactUs")
 	private String contactUs() {
 		System.out.println("Going contactUs....");
 		return "contactUs";
 	}
-	
+	*/
 
 }

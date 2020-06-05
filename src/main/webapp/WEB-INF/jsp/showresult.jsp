@@ -6,13 +6,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script type="text/javascript">
+function () preventBack(){
+	window.history.forward
+}
+setTimeOut"(preventBack()",0)
+</script>
 
 <title>Insert title here</title>
 </head>
 <body>
 <div><H1>${deQuizUser.dquUserName}</H1></div>
-<div align="center" style="font-size:min(5vw,40);">
-<!--  question number and question -->
+<div align="center" style="font-size:min(5vw,40);" >
 <form:form action="/startquiz"  method="post" modelAttribute="deQuizUser">
   <form:hidden path="dquUserId" value="${deQuizUser.dquUserId}"/>
   <form:hidden path="dquQuizId" value="${deQuizUser.dquQuizId}"/>
