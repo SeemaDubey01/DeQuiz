@@ -26,6 +26,26 @@
 		},100);
 	},1000);
 </script>
+<script>
+$(document).ready(function(){
+  $("#optionA").click(function(){
+		$("#selectedAnswer").attr("value","a");
+		$("#quizform").submit();
+  });
+  $("#optionB").click(function(){
+		$("#selectedAnswer").attr("value","b");
+		$("#quizform").submit();
+  });
+  $("#optionC").click(function(){
+		$("#selectedAnswer").attr("value","c");
+		$("#quizform").submit(); 
+  });
+  $("#optionD").click(function(){
+		$("#selectedAnswer").attr("value","d");
+		$("#quizform").submit();
+  });
+});
+</script>
 <title>DeQuiz: Start Quiz</title>
 </head>
 <body>
@@ -42,23 +62,22 @@
   <form:hidden path="dquUserId" value="${deQuizMaster.dquUserId}"/>
   <form:hidden path="deqmAnswer" value="${deQuizMaster.deqmAnswer}"/>
   <form:hidden path="dquMarks" value="0"/>
-  <form:radiobutton path="selectedAnswer" readonly="true" cssStyle="color: white;background-color:Red" value = "a" /> 
-  <form:input path="deqmOption_a" readonly="true" cssStyle="color: white;background-color:DodgerBlue" value = " ${deQuizMaster.deqmOption_a}" />
-  </div><br/>
-  <div>
-  <form:radiobutton path="selectedAnswer" readonly="true" cssStyle="color: white;background-color:Red" value = "b" /> 
-  <form:input path="deqmOption_b" readonly="true" cssStyle="color: white;background-color:Red" value = " ${deQuizMaster.deqmOption_b}" />
-  </div><br/>
-  <div>
-  <form:radiobutton path="selectedAnswer" readonly="true" cssStyle="color: white;background-color:Green" value = "c" />
-  <form:input path="deqmOption_c" readonly="true" cssStyle="color: white;background-color:Green" value = " ${deQuizMaster.deqmOption_c}" />
-  </div><br/>
-  <div>
-  <form:radiobutton path="selectedAnswer" readonly="true" cssStyle="color: white;background-color:Orange" value = "d" /> 
-  <form:input path="deqmOption_d" readonly="true" cssStyle="color: white;background-color:Orange" value = " ${deQuizMaster.deqmOption_d}" /> 
-  </div><br/>
-  <form:button>submit</form:button>
-</form:form><p/>
+    <form:hidden path="selectedAnswer" value="a"/>
+  <p id="optionA">
+  <form:label path="deqmOption_a" cssStyle="color: white;background-color:DodgerBlue">${deQuizMaster.deqmOption_a}</form:label>
+  </p>
+  <p id="optionB">
+  <form:label path="deqmOption_b" cssStyle="color: white;background-color:Red">${deQuizMaster.deqmOption_b}</form:label>
+  </p>
+  <p id="optionC">
+  <form:label path="deqmOption_c" cssStyle="color: white;background-color:Green">${deQuizMaster.deqmOption_c}</form:label>
+  </p>
+  <p id="optionD">
+  <form:label path="deqmOption_d" cssStyle="color: white;background-color:Orange">${deQuizMaster.deqmOption_d}</form:label>
+  </p>
+
+  </div>
+</form:form>
 	<table Style="border:1px solid black;">
 		<tr><td>Time remaining: <span id="timer">${deQuizMaster.deqmTimer}</span> Seconds</td></tr>
 	</table>
