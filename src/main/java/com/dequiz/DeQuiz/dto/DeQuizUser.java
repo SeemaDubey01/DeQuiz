@@ -103,12 +103,12 @@ public class DeQuizUser  {
 	}
 
 	public void setDquCorrectAns(String dquCorrectAns) {
+		System.out.println("setcorrectans: " + dquCorrectAns);
 		this.dquCorrectAns = dquCorrectAns;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "userId = " + dquUserId + " quizId: " + dquQuizId + " userName: " + dquUserName + " marks: " + dquTotalMarks;
 	}
 	

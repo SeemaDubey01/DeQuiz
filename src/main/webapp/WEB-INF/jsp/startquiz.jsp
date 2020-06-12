@@ -7,27 +7,50 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="script/dequiz.js"></script>
+<link href="CSS/dequiz.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-	var remainingSec = 10;
+	var remainingSec = 5;
 	var marks = 1000;
-	remainingSec = [[${deQuizMaster.deqmTimer}]];
+	var dispalyQuestion = "Y";
 	$("#msg").text (remainingSec);
-	setInterval(function(){
+	var timerId = setInterval(function(){
 		$("#timer").text (remainingSec);
 		remainingSec = remainingSec - 1;
 		if (remainingSec < 0 ) {
-			remainingSec = 0;
-			$("#quizform").submit();
+			if (dispalyQuestion == "Y" ){
+				dispalyQuestion = "N";
+		//		remainingSec = ${deQuizMaster.deqmTimer};
+				remainingSec = 15;
+				marks = remainingSec * 100;		
+				$("#quizdiv").show();
+		//		clearInterval(timerId);
+			} else {
+				remainingSec = 0;
+				$("#quizform").submit();
+			}
 		}		
 		setInterval(function(){
-			marks = marks - 2;
+			marks = marks - 1;
 			if (marks < 0 ) marks =0;
+			$("#tmarks").text (marks);	
 			$("#dquMarks").attr("value",marks);
+//			console.log("time: " + remainingSec + " marks: " + marks);
 		},100);
+//		clearInterval(timerId);	
+/*		setTimeout(function calculateMarks(){
+			marks = marks - 1;
+			if (marks < 0 ) marks =0;
+			$("#tmarks").text (marks);	
+			$("#dquMarks").attr("value",marks);
+			setTimeout(calculateMarks,100);
+//			console.log("time: " + remainingSec + " marks: " + marks);
+		},100);*/
+		//console.log("time11: " + remainingSec + " marks: " + marks);
 	},1000);
-</script>
-<script>
+
 $(document).ready(function(){
+  $("#quizdiv").hide();
   $("#optionA").click(function(){
 		$("#selectedAnswer").attr("value","a");
 		$("#quizform").submit();
@@ -49,38 +72,60 @@ $(document).ready(function(){
 <title>DeQuiz: Start Quiz</title>
 </head>
 <body>
+<div class="wrapper">
+<!--  page header containg heading and menu -->
+<div align="center">
+  <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
+  </span> <span class="header">De Quiz</span>
+</div>
+<!--  end of page header -->
+<!--  content block -->
+<div class="content-window">
 <h1>Start Quiz</h1>
 <div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
 <form:form id="quizform" action="/showresult"  method="post" modelAttribute="deQuizMaster">
-  <div>
   <div>${deQuizMaster.deqmQuestion}</div><p/>
-  </div>
-  <div>
+  
+  <div id="quizdiv" class="quizdiv">
   <form:hidden path="deqmQuizId" value="${deQuizMaster.deqmQuizId}"/>
   <form:hidden path="deqmQuestionNo" value="${deQuizMaster.deqmQuestionNo}"/>
   <form:hidden path="dquUserId" value="${deQuizMaster.dquUserId}"/>
   <form:hidden path="deqmAnswer" value="${deQuizMaster.deqmAnswer}"/>
+  <form:hidden path="deqmOption_a" value="${deQuizMaster.deqmOption_a}"/>
+  <form:hidden path="deqmOption_b" value="${deQuizMaster.deqmOption_b}"/>
+  <form:hidden path="deqmOption_c" value="${deQuizMaster.deqmOption_c}"/>
+  <form:hidden path="deqmOption_d" value="${deQuizMaster.deqmOption_d}"/>
   <form:hidden path="dquMarks" value="0"/>
     <form:hidden path="selectedAnswer" value="a"/>
   <p id="optionA">
-  <form:label path="deqmOption_a" cssStyle="color: white;background-color:DodgerBlue">${deQuizMaster.deqmOption_a}</form:label>
+  <form:label path="deqmOption_a">${deQuizMaster.deqmOption_a}</form:label>
   </p>
   <p id="optionB">
-  <form:label path="deqmOption_b" cssStyle="color: white;background-color:Red">${deQuizMaster.deqmOption_b}</form:label>
+  <form:label path="deqmOption_b">${deQuizMaster.deqmOption_b}</form:label>
   </p>
   <p id="optionC">
-  <form:label path="deqmOption_c" cssStyle="color: white;background-color:Green">${deQuizMaster.deqmOption_c}</form:label>
+  <form:label path="deqmOption_c">${deQuizMaster.deqmOption_c}</form:label>
   </p>
   <p id="optionD">
-  <form:label path="deqmOption_d" cssStyle="color: white;background-color:Orange">${deQuizMaster.deqmOption_d}</form:label>
+  <form:label path="deqmOption_d">${deQuizMaster.deqmOption_d}</form:label>
   </p>
 
   </div>
 </form:form>
 	<table Style="border:1px solid black;">
-		<tr><td>Time remaining: <span id="timer">${deQuizMaster.deqmTimer}</span> Seconds</td></tr>
+		<tr><td>Time remaining: <span id="timer">5</span> Seconds. <!-- Marks<span id="tmarks">0</span> --></td></tr>
 	</table>
+</div><p/>
 </div>
+<!--  End of content block -->
+<!--  Footer -->
+<div class="footer">
+&copy; DeQuiz India 
+</div>
+<!--  end of Footer -->
+
+</div>
+
 </body>
 </html>

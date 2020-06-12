@@ -15,9 +15,6 @@ import com.dequiz.DeQuiz.dto.DeQuizUser;
 @Repository
 public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {
 
-	//@Query("SELECT dqu_total_marks,dqu_user_name\r\n" + 
-	//		"  FROM de_quiz_user where dqu_quiz_id ='101'  order by  dqu_total_marks desc")
-	public List<DeQuizUser> findByDquQuizId(@Param("dquUserId") Integer dquUserId);
 
 	@Query("SELECT u FROM DeQuizUser u WHERE u.dquUserId = dquUserId")
 	public DeQuizUser findByDquUserId(@Param("dquUserId") Integer dquUserId);
@@ -28,6 +25,10 @@ public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {
 	int updateUser(@Param("dquMarks") Integer dquMarks, @Param("dquAnswer") String dquAnswer,
 			@Param("dquTotalMarks") Integer dquTotalMarks, @Param("dquUserId") Integer dquUserId);
 	//public DeQuizUser save (DeQuizUser user);
+	
+	@Query("SELECT u FROM DeQuizUser u WHERE u.dquQuizId = :dquQuizId order by dquTotalMarks desc")
+	
+	public List<DeQuizUser> findforResultDisplay(@Param("dquQuizId") Integer dquQuizId);
 	
 	
 

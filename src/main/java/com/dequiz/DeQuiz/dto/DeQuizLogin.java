@@ -2,19 +2,21 @@ package com.dequiz.DeQuiz.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
-import com.dequiz.DeQuiz.validator.LoginIdConstraint;
-
 @Entity
-
-@LoginIdConstraint.List({ @LoginIdConstraint(field = "dqlUserId", message = "Userid/password is not valid") })
 public class DeQuizLogin {
 	@Id
+	@Size(min =5, max = 30, message = "Please give a valid user Name")
 	private String dqlUserId;
+	@Size(min =8, max = 30, message = "Password should have a minimum 8 characters")
 	private String dqlPassword;
+	@Size(min =3, max = 30, message = "Please give a valid user Name")
 	private String dqlFirstName;
+	@Size(min =3, max = 30, message = "Please give a valid user Name")
 	private String dqlLastName;
+	@Email(message="Please provide a valid mail id")
 	private String dqlEmail;
 	
 	

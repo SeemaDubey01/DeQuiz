@@ -17,7 +17,7 @@
 <tr><td><a href="/">Home</a></td>
 <td><a href="/aboutus.html">About Us</a></td>
 <td><a href="/joinQuiz">Join Quiz</a></td>
-<td><a href="/admin">Admin</a></td>
+<td><a href="/adminlogin">Admin</a></td>
 <td><a href="/contactus.html">Contact Us</a></td></tr>
 </table>
 </div>

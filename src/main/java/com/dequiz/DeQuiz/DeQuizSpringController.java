@@ -2,7 +2,10 @@ package com.dequiz.DeQuiz;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.dto.DeQuizUser;
 import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
 import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
+
 
 @Controller
 public class DeQuizSpringController {
@@ -62,7 +66,7 @@ public class DeQuizSpringController {
 	
 	/* startquiz requires userId, quizId and questionNo */
 	@PostMapping("/startquiz")
-	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {
+	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {	
 		System.out.println("inside startquiz get: " + deQuizUser);
 		Integer quizId = deQuizUser.getDquQuizId() * 100 + deQuizUser.getDquQuestionNo() + 1;
 			
@@ -74,10 +78,21 @@ public class DeQuizSpringController {
 			if (deQuizUserMap.isPresent()){
 				deQuizUser = deQuizUserMap.get();
 				System.out.println("final: " + deQuizUser);
-				model.addAttribute("deQuizUser",deQuizUser);
+				model.addAttribute("deQuizUserName",deQuizUser.getDquUserName());
+				model.addAttribute("deQuizTotalNumber",deQuizUser.getDquTotalMarks());
+				List<DeQuizUser> deQuizUserList = new ArrayList<DeQuizUser>();
+				deQuizUserList = deQuizUserRepo.findforResultDisplay(deQuizUser.getDquQuizId());
+				if(null!=deQuizUserList && deQuizUserList.size()!=0 ) {
+					List<DeQuizUser> userResultList = new ArrayList<DeQuizUser>();
+					userResultList =deQuizUserList.stream().limit(10).collect(Collectors.toList());
+					System.out.println("passing list: " + deQuizUserList);
+					model.addAttribute("userResultList",userResultList);
+				}
+				
 			}
 			return "finalresult";
 		}
+		
 	
 		deQuizMaster = deQuizMasterMap.get();
 		deQuizMaster.setDquUserId(deQuizUser.getDquUserId());
@@ -118,6 +133,7 @@ public class DeQuizSpringController {
 		default:
 			deQuizUser.setDquCorrectAns("Anser not given by Quiz Master");
 		}
+		System.out.println("the correct answer is ---"+deQuizUser.getDquCorrectAns());
 		if(deQuizMaster.getDeqmAnswer().equalsIgnoreCase(deQuizMaster.getSelectedAnswer())) {
 			System.out.println("adding marks " + deQuizMaster.getDquMarks());
 			deQuizUser.setDquMarks(deQuizMaster.getDquMarks());

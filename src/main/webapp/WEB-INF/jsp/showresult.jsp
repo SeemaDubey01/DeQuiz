@@ -6,17 +6,28 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="script/dequiz.js"></script>
+<link href="CSS/dequiz.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script type="text/javascript">
-function () preventBack(){
+function preventBack(){
 	window.history.forward
 }
-setTimeOut"(preventBack()",0)
+setTimeOut"(preventBack,0);
 </script>
 
 <title>Insert title here</title>
 </head>
 <body>
+<div class="wrapper">
+<!--  page header containg heading and menu -->
+<div align="center">
+  <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
+  </span> <span class="header">De Quiz</span>
+</div>
+<!--  end of page header -->
+<!--  content block -->
+<div class="content-window">
 <div><H1>${deQuizUser.dquUserName}</H1></div>
 <div align="center" style="font-size:min(5vw,40);" >
 <form:form action="/startquiz"  method="post" modelAttribute="deQuizUser">
@@ -28,7 +39,16 @@ setTimeOut"(preventBack()",0)
 	<form:button>Next Question</form:button>	
 </form:form>
 <p>Correct Answer:${deQuizUser.dquCorrectAns}</p>
-<p/><span id="userMessage" ></span>
+<p/><span id="userMessage" ></span><p/>
 </div>
+</div>
+<!--  Footer -->
+<div class="footer">
+&copy; DeQuiz India 
+</div>
+<!--  end of Footer -->
+
+</div>
+
 </body>
 </html>
