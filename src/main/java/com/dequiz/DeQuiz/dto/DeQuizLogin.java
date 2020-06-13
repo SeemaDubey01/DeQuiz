@@ -2,8 +2,9 @@ package com.dequiz.DeQuiz.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+
+import com.dequiz.DeQuiz.validator.ExtendedEmailValidator;
 
 @Entity
 public class DeQuizLogin {
@@ -16,7 +17,7 @@ public class DeQuizLogin {
 	private String dqlFirstName;
 	@Size(min =3, max = 30, message = "Please give a valid user Name")
 	private String dqlLastName;
-	@Email(message="Please provide a valid mail id")
+	@ExtendedEmailValidator
 	private String dqlEmail;
 	
 	
