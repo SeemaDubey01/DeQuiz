@@ -37,6 +37,7 @@
 <div class="content-window">
 <H1>Join Quiz</H1>
 	<h2>Participants please enter details</h2>
+	Try sample quiz - 102 or 369<p/>
 		<div id="registerform" align="center">
 		<table>
 		<form:form action="/joinQuiz" method="post" modelAttribute="deQuizUser">
