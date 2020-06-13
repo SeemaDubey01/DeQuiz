@@ -48,11 +48,7 @@
 </div>
 <!--  Footer -->
 <div class="footer">
-<table >
-<tr>
-  <td align=right>&copy; DeQuiz India </td>
-</tr>
-</table>
+&copy; DeQuiz India 
 </div>
 <!--  end of Footer -->
 

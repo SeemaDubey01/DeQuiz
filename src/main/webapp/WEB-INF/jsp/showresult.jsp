@@ -11,9 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script type="text/javascript">
 function preventBack(){
-	window.history.forward
+	window.history.forward();
 }
-setTimeOut"(preventBack,0);
+setTimeOut(preventBack,0);
 </script>
 
 <title>Insert title here</title>
@@ -38,7 +38,7 @@ setTimeOut"(preventBack,0);
   <form:label path="dquTotalMarks">Your total points for this is:<b>${deQuizUser.dquTotalMarks}</b></form:label> <p/>
 	<form:button>Next Question</form:button>	
 </form:form>
-<p>Correct Answer:${deQuizUser.dquCorrectAns}</p>
+<p>Correct Answer: ${deQuizUser.dquCorrectAns}</p>
 <p/><span id="userMessage" ></span><p/>
 </div>
 </div>

@@ -8,18 +8,16 @@ body {
 
 .header {font-size: 60px;color:#000099;}
 .wrapper{
-	display:grid;
-//	grid-template-rows: 40% 80% 10%;
-
+	display: grid;
 }
 .wrapper > div{
 	border:1px solid black;
+	margin: 5px;
+	padding: 5px;
 }
 .mentu-container {
 	min-width:300px;
 	padding:5px;
-	margin:auto;
-	margin-right:5px;
 }
 .menuitem {
 	width:16vw;
@@ -43,9 +41,8 @@ body {
 	font-style: italic;
 }
 .quizdiv {
-	size: 100px;
-	margin: 100px;
-	font-size: min (5vw,50);
+	margin-left: 80px;
+	margin-right: 80px;
 }
 .quizdiv > p {
 	border: 1px solid black;

@@ -20,12 +20,16 @@
 		if (remainingSec < 0 ) {
 			if (dispalyQuestion == "Y" ){
 				dispalyQuestion = "N";
-		//		remainingSec = ${deQuizMaster.deqmTimer};
-				remainingSec = 15;
+//show options
+				remainingSec = ${deQuizMaster.deqmTimer};
+		//		remainingSec = 100;
 				marks = remainingSec * 100;		
 				$("#quizdiv").show();
+				$("#timertable").show();
+				$("#messagetable").hide();
 		//		clearInterval(timerId);
 			} else {
+//submit the form
 				remainingSec = 0;
 				$("#quizform").submit();
 			}
@@ -51,6 +55,7 @@
 
 $(document).ready(function(){
   $("#quizdiv").hide();
+  $("#timertable").hide();
   $("#optionA").click(function(){
 		$("#selectedAnswer").attr("value","a");
 		$("#quizform").submit();
@@ -85,9 +90,8 @@ $(document).ready(function(){
 <div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
 <form:form id="quizform" action="/showresult"  method="post" modelAttribute="deQuizMaster">
-  <div>${deQuizMaster.deqmQuestion}</div><p/>
+  <div>${deQuizMaster.deqmQuestionNo}.  ${deQuizMaster.deqmQuestion}</div>
   
-  <div id="quizdiv" class="quizdiv">
   <form:hidden path="deqmQuizId" value="${deQuizMaster.deqmQuizId}"/>
   <form:hidden path="deqmQuestionNo" value="${deQuizMaster.deqmQuestionNo}"/>
   <form:hidden path="dquUserId" value="${deQuizMaster.dquUserId}"/>
@@ -97,7 +101,8 @@ $(document).ready(function(){
   <form:hidden path="deqmOption_c" value="${deQuizMaster.deqmOption_c}"/>
   <form:hidden path="deqmOption_d" value="${deQuizMaster.deqmOption_d}"/>
   <form:hidden path="dquMarks" value="0"/>
-    <form:hidden path="selectedAnswer" value="a"/>
+    <form:hidden path="selectedAnswer" value="x"/>
+  <div id="quizdiv" class="quizdiv">
   <p id="optionA">
   <form:label path="deqmOption_a">${deQuizMaster.deqmOption_a}</form:label>
   </p>
@@ -110,11 +115,13 @@ $(document).ready(function(){
   <p id="optionD">
   <form:label path="deqmOption_d">${deQuizMaster.deqmOption_d}</form:label>
   </p>
-
-  </div>
+  </div><p/>
 </form:form>
-	<table Style="border:1px solid black;">
-		<tr><td>Time remaining: <span id="timer">5</span> Seconds. <!-- Marks<span id="tmarks">0</span> --></td></tr>
+	<table id="timertable" Style="border:1px solid black;">
+		<tr><td>Time remaining: <span id="timer">${deQuizMaster.deqmTimer}</span> Seconds. <!-- Marks<span id="tmarks">0</span> --></td></tr>
+	</table>
+	<table id="messagetable" Style="border:1px solid black;">
+		<tr><td>Please wait for options</td></tr>
 	</table>
 </div><p/>
 </div>

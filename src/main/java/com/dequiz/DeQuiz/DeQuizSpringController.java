@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.dto.DeQuizUser;
@@ -30,13 +31,7 @@ public class DeQuizSpringController {
 	
 	@Autowired
 	DeQuizMasterDBRepo deQuizMasterRepo;
-/*	
-	@RequestMapping("/")
-	private String home() {
-		System.out.println("Going home....");
-		return "index";
-	}
-*/
+
 	@GetMapping("/joinQuiz")
 	private String showForm(@Valid Model model) {
 		DeQuizUser deQuizUser = new DeQuizUser();
@@ -50,7 +45,7 @@ public class DeQuizSpringController {
 		if (bindingResult.hasErrors()) {
 			return "register_form";
 		} else {
-			deQuizUser.setDquSessionId("Dummy session id");
+			deQuizUser.setDquSessionId("Q:");
 			deQuizUser.setDquAnswer("X");
 			deQuizUser.setDquMarks(0);
 			deQuizUser.setDquTotalMarks(0);
@@ -66,10 +61,8 @@ public class DeQuizSpringController {
 	
 	/* startquiz requires userId, quizId and questionNo */
 	@PostMapping("/startquiz")
-	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser,Model model) {	
-		System.out.println("inside startquiz get: " + deQuizUser);
+	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser, Model model) {	
 		Integer quizId = deQuizUser.getDquQuizId() * 100 + deQuizUser.getDquQuestionNo() + 1;
-			
 		DeQuizMaster deQuizMaster = new DeQuizMaster ();
 	
 		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(quizId);
@@ -77,7 +70,6 @@ public class DeQuizSpringController {
 			Optional <DeQuizUser> deQuizUserMap = deQuizUserRepo.findById(deQuizUser.getDquUserId());
 			if (deQuizUserMap.isPresent()){
 				deQuizUser = deQuizUserMap.get();
-				System.out.println("final: " + deQuizUser);
 				model.addAttribute("deQuizUserName",deQuizUser.getDquUserName());
 				model.addAttribute("deQuizTotalNumber",deQuizUser.getDquTotalMarks());
 				List<DeQuizUser> deQuizUserList = new ArrayList<DeQuizUser>();
@@ -88,7 +80,6 @@ public class DeQuizSpringController {
 					System.out.println("passing list: " + deQuizUserList);
 					model.addAttribute("userResultList",userResultList);
 				}
-				
 			}
 			return "finalresult";
 		}
@@ -133,28 +124,30 @@ public class DeQuizSpringController {
 		default:
 			deQuizUser.setDquCorrectAns("Anser not given by Quiz Master");
 		}
-		System.out.println("the correct answer is ---"+deQuizUser.getDquCorrectAns());
+		
 		if(deQuizMaster.getDeqmAnswer().equalsIgnoreCase(deQuizMaster.getSelectedAnswer())) {
-			System.out.println("adding marks " + deQuizMaster.getDquMarks());
 			deQuizUser.setDquMarks(deQuizMaster.getDquMarks());
 			deQuizUser.setDquTotalMarks(deQuizUser.getDquTotalMarks()+deQuizUser.getDquMarks());
-			deQuizUserRepo.save(deQuizUser);	
 		}
+		deQuizUser.setDquSessionId(deQuizUser.getDquSessionId() + " " + deQuizMaster.getDeqmQuestionNo() + 
+				deQuizMaster.getSelectedAnswer() + deQuizUser.getDquMarks());
+		deQuizUserRepo.save(deQuizUser);	
 		model.addAttribute("deQuizUser",deQuizUser);
 		return "showresult";
 	}
-	/*
-	@RequestMapping("/aboutUs")
-	private String aboutUs() {
-		System.out.println("Going aboutUs....");
-		return "aboutUs";
+	
+	@GetMapping("/showresult/{quizId}")
+	private String showResult(@PathVariable("quizId") Integer quizId, @ModelAttribute("deQuizUser") DeQuizMaster deQuizUser, Model model) {
+		System.out.println("inside the controller");
+		List<DeQuizUser> deQuizUserList = new ArrayList<DeQuizUser>();
+		deQuizUserList = deQuizUserRepo.findforResultDisplay(quizId);
+		model.addAttribute("deQuizUserName","Show Top 10");
+		model.addAttribute("deQuizTotalNumber",0);
+		if(null!=deQuizUserList && deQuizUserList.size()!=0 ) {
+			List<DeQuizUser> userResultList = new ArrayList<DeQuizUser>();
+			userResultList =deQuizUserList.stream().limit(10).collect(Collectors.toList());
+			model.addAttribute("userResultList",userResultList);
+		}
+		return "finalresult";
 	}
-
-	@RequestMapping("/contactUs")
-	private String contactUs() {
-		System.out.println("Going contactUs....");
-		return "contactUs";
-	}
-	*/
-
 }
