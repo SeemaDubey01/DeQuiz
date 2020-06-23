@@ -18,21 +18,41 @@ public class DeQuizMaster {
 	private String deqmAnswer;
 	private String deqmQuizActive;
 	private Integer deqmTimer;
+	private String dqlUserId;
+	private String deqmQuizDesc;
 	
+	
+
 	@Transient
 	private String selectedAnswer;
 	@Transient
 	private Integer dquUserId;
 	@Transient
 	private Integer dquMarks;
+	@Transient
+	private String dquUserName;
 
 /*
     @OneToMany(targetEntity=DeQuizUser.class,cascade=CascadeType.ALL )
     @JoinColumn(referencedColumnName="dquUserId")
     private List<DeQuizUser> users = new ArrayList<DeQuizUser>();
  */   
+	
+	public String getDeqmQuizDesc() {
+		return deqmQuizDesc;
+	}
+	public void setDeqmQuizDesc(String deqmQuizDesc) {
+		this.deqmQuizDesc = deqmQuizDesc;
+	}
+	
 	public Integer getDquUserId() {
 		return dquUserId;
+	}
+	public String getDqlUserId() {
+		return dqlUserId;
+	}
+	public void setDqlUserId(String dqlUserId) {
+		this.dqlUserId = dqlUserId;
 	}
 	public void setDquUserId(Integer dquUserId) {
 		this.dquUserId = dquUserId;
@@ -111,6 +131,12 @@ public class DeQuizMaster {
 	}
 	public Integer getDeqmTimer() {
 		return deqmTimer;
+	}
+	public String getDquUserName() {
+		return dquUserName;
+	}
+	public void setDquUserName(String dquUserName) {
+		this.dquUserName = dquUserName;
 	}
 	public void setDeqmTimer(Integer deqmTimer) {
 		this.deqmTimer = deqmTimer;

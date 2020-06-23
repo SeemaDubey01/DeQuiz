@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
- <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +23,7 @@
 <div class="menu-container">
 <table >
   <tr>
-    <td><a href="index.html" target="_top" onclick="MM_nbGroup('down','group1','Home','images/home_clicked.jpg',1)" onmouseover="MM_nbGroup('over','Home','images/home_clicked.jpg','images/home_clicked.jpg',1)" onmouseout="MM_nbGroup('out')"><img src="images/home.jpg" alt="Home" name="Home" class="menuitem" id="Home" onload="" /></a></td>
+    <td><a href="index.html" target="_top" onclick="MM_nbGroup('down','group1','Home','images/home_clicked.jpg',1)" onmouseover="MM_nbGroup('over','Home','images/home_hover.jpg','images/home_clicked.jpg',1)" onmouseout="MM_nbGroup('out')"><img src="images/home.jpg" alt="Home" name="Home" class="menuitem" id="Home" onload="" /></a></td>
     <td><a href="aboutus.html" target="_top" onclick="MM_nbGroup('down','group1','AboutUs','images/aboutus_clicked.jpg',1)" onmouseover="MM_nbGroup('over','AboutUs','images/aboutus_hover.jpg','images/aboutus_clicked.jpg',1)" onmouseout="MM_nbGroup('out')"><img src="images/aboutus.jpg" alt="About Us" name="AboutUs" class="menuitem" id="AboutUs" onload="" /></a></td>
     <td><a href="joinQuiz" target="_top" onclick="MM_nbGroup('down','group1','JoinQuiz','images/joinquiz_clicked.jpg',1)" onmouseover="MM_nbGroup('over','JoinQuiz','images/joinquiz_hover.jpg','images/joinquiz_clicked.jpg',1)" onmouseout="MM_nbGroup('out')"><img src="images/joinquiz.jpg" alt="Join Quiz" name="JoinQuiz" class="menuitem" id="JoinQuiz" onload="" /></a></td>
     <td><a href="contactus.html" target="_top" onclick="MM_nbGroup('down','group1','ContactUs','images/contactus_clicked.jpg',1)" onmouseover="MM_nbGroup('over','ContactUs','images/contactus_hover.jpg','images/contactus_clicked.jpg',1)" onmouseout="MM_nbGroup('out')"><img src="images/contactus.jpg" alt="Contact Us" name="ContactUs" class="menuitem" id="ContactUs" onload="" /></a></td>
@@ -35,30 +34,20 @@
 <!--  end of page header -->
 <!--  content block -->
 <div class="content-window">
-<H2>Registration Status <span></span></H2>
+<H1>Forgot Password</H1><p/>
 <div align="center" style="font-size:min(5vw,40);">
-<form:form action="/createquiz" method= "get" modelAttribute="deQuizLogin">
-	<form:label path="dqlUserId">Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
-    <form:button>Create Quiz</form:button>
-    
-    <table>
-	<c:if test="${not empty existingDistinctQuizlist}">
-
-	   <tr>
-	   <td>QuizId</td>
-	   <td>Quiz Description</td>
-	   </tr>
-        <c:forEach var="listValue" items="${existingDistinctQuizlist}">
-        <tr>
-            <td>${listValue.deqmQuizId}</td>
-             <td>${listValue.deqmQuizDesc}</td>
-             </tr>
-        </c:forEach>
-  
-	</c:if>
-	</table>
-</form:form>		
-</div><p/>
+		<table>
+		<form:form action="/sendMail" method="post" modelAttribute="deQuizLogin">
+		<tr>
+			<td><form:label path="dqlEmail">Email ID:</form:label></td>
+			<td><form:input path="dqlEmail"  /></td>
+			<td><form:errors path="dqlEmail" cssClass="error" /></td>
+		
+		<tr><td colspan="3" align="center"><form:button>submit</form:button></td></tr><tr><td><p/></td></tr>
+		</form:form>
+		</table>
+	</div>
+	<br/><br/>
 </div>
 <!--  end of content block -->
 <!--  Footer -->

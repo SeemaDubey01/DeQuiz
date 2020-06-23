@@ -1,9 +1,20 @@
  package com.dequiz.DeQuiz;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,15 +25,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dequiz.DeQuiz.dto.DeQuizLogin;
+import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.repo.DeQuizLoginDBRepo;
+import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
+import com.dequiz.DeQuiz.service.EmailConfig;
+import com.dequiz.DeQuiz.service.EmailService;
 
 
 @Controller
 public class DeQuizAdminController {
 	
 	@Autowired
-	DeQuizLoginDBRepo deQuizLoginDBRepo;
+	private DeQuizLoginDBRepo deQuizLoginDBRepo;
 	
+	@Autowired
+	private DeQuizMasterDBRepo deQuizMasterDBRepo;
+	
+	
+	
+	@Autowired
+	private EmailService emailService;
 
 	DeQuizLogin quizLogin;
 	@RequestMapping("/admin")
@@ -54,7 +76,18 @@ public class DeQuizAdminController {
 		if (bindingResult.hasErrors()) {
 			return "adminLogin";
 		} else {
+			List<DeQuizMaster> existingQuizlist = new ArrayList<DeQuizMaster>();
+			List<DeQuizMaster> existingDistinctQuizlist = new ArrayList<DeQuizMaster>();
+			if(deQuizLogin!=null && deQuizLogin.getDqlUserId()!=null) {
+				existingQuizlist=getExistingQuizes(deQuizLogin.getDqlUserId());
+				existingDistinctQuizlist = io.vavr.collection.List.ofAll(existingQuizlist)
+						  .distinctBy(DeQuizMaster::getDeqmQuizId)
+						  .toJavaList();
+			}
+			model.addAttribute("existingQuizlist", existingQuizlist);
+			model.addAttribute("existingDistinctQuizlist", existingDistinctQuizlist);
 			model.addAttribute("deQuizLogin", deQuizLogin);
+			
 			return "adminregisterok";
 
 		}
@@ -91,7 +124,6 @@ public class DeQuizAdminController {
 	}
 	
 	 private DeQuizLogin getAdmin(String userIdfield){
-		  System.out.println("Inside getAdmin"); 
 		  Optional<DeQuizLogin> dequizLoginMap =deQuizLoginDBRepo.findById(userIdfield); 
 		  if(dequizLoginMap.isPresent()) { 
 			  quizLogin = dequizLoginMap.get();
@@ -99,5 +131,59 @@ public class DeQuizAdminController {
 		  return quizLogin;
 		  
 		  }
+	 
+	 @GetMapping("/forGotPassword")
+		private String forgotPassword(Model model) {
+			System.out.println("Inside the get method--rtertertrt-");
+			DeQuizLogin deQuizLogin = new DeQuizLogin();
+			model.addAttribute("deQuizLogin", deQuizLogin);
+			return "forGotPassword";
+		}
+	 
+		@PostMapping("/sendMail")
+		public String processForgotPasswordForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, BindingResult bindingResult, Model model) {
+			Optional<DeQuizLogin> dequizloginoformailmap = deQuizLoginDBRepo.findByDqlEmail(deQuizLogin.getDqlEmail());
+			if (!dequizloginoformailmap.isPresent()) {
+				bindingResult.addError(new FieldError("deQuizLogin", "dqlEmail", "Email id does not exist"));
+				return "forGotPassword";
+			}
+			else {
+				DeQuizLogin deQuizLoginEmail = dequizloginoformailmap.get();
+				File imageFile = null;
+				 try {
+					 MimeMessage message = emailService.createMimemessage();
+					MimeMessageHelper helper = new MimeMessageHelper(message, true);
+					 helper.setFrom("contact@dequiz.co.in");
+				     helper.setTo(deQuizLoginEmail.getDqlEmail());
+				     helper.setSubject("DeQuiz forgot Password support");
+				     helper.setText("Dear "+deQuizLoginEmail.getDqlFirstName()+"\n Your DeQuiz password is "+deQuizLoginEmail.getDqlPassword());
+				     
+				     try {
+						imageFile = new ClassPathResource("static/images/dequiz_thumnail.jpg").getFile();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				     helper.addInline("rightSideImage",imageFile);
+				     emailService.sendEmail(message);
+				     
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "sentMail";
+				
+				
+				
+			}
+		
+		}
+		
+		private List<DeQuizMaster> getExistingQuizes(String userId){
+			List<DeQuizMaster> qMlist = deQuizMasterDBRepo.findByDqlUserId(userId);
+			  return qMlist;
+		}
+	 
+		 
 
 }

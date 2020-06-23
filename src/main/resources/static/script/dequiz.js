@@ -1,6 +1,7 @@
 /**
  * 
  */
+//var baseurl = request.getContextPath();
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
     var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
@@ -48,3 +49,11 @@ function MM_nbGroup(event, grpName) { //v6.0
       nbArr[nbArr.length] = img;
   } }
 }
+/* load header */
+$(document).ready(function fistLoad(){
+	$("#headerpage").load("/header.html");
+	$("#footerpage").load("/footer.html");
+	MM_preloadImages('/images/home_clicked.jpg','/images/home_hover.jpg','/images/aboutus_clicked.jpg', '/images/aboutus_hover.jpg',
+			'/images/joinquiz_clicked.jpg','/images/joinquiz_hover.jpg','/images/contactus_clicked.jpg','/images/contactus_hover.jpg',
+			'/images/login_clicked.jpg','/images/login_hover.jpg');
+});

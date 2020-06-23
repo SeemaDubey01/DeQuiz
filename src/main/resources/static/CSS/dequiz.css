@@ -49,3 +49,12 @@ body {
 	color: white;
 	background-color: blue;
 }
+.quizdiv > div {
+	border: 1px solid black;
+	color: white;
+	background-color: blue;
+}
+.rankingDiv > td {
+	border: 1px solid black;
+	text-align: center;
+}
