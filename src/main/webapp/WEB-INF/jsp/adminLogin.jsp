@@ -48,7 +48,6 @@
 			<td><form:errors path="dqlPassword" cssClass="error" /></td>
 		</tr>
 		<tr><td colspan="3" align="center"><form:button>submit</form:button></td></tr><tr><td><p/></td></tr>
-		<tr><td colspan="3" align="center"><a href="/forGotPassword">Forgot Password?</a></td></tr>
 		<tr><td colspan="3" align="center"><a href="/signUpNew">Not Registered SignUp Here</a></td></tr>
 		</form:form>
 		</table>

@@ -35,7 +35,7 @@
 <!--  content block -->
 <div class="content-window">
 <H1>Forgot Password</H1><p/>
-<div align="center" style="font-size:min(5vw,40);">
+<!-- -- <div align="center" style="font-size:min(5vw,40);">
 		<table>
 		<form:form action="/sendMail" method="post" modelAttribute="deQuizLogin">
 		<tr>
@@ -48,7 +48,7 @@
 		</table>
 	</div>
 	<br/><br/>
-</div>
+</div> -->
 <!--  end of content block -->
 <!--  Footer -->
 <div class="footer">

@@ -29,7 +29,6 @@ import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.repo.DeQuizLoginDBRepo;
 import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
 import com.dequiz.DeQuiz.service.EmailConfig;
-import com.dequiz.DeQuiz.service.EmailService;
 
 
 @Controller
@@ -43,8 +42,8 @@ public class DeQuizAdminController {
 	
 	
 	
-	@Autowired
-	private EmailService emailService;
+	//@Autowired 
+	//private EmailService emailService;
 
 	DeQuizLogin quizLogin;
 	@RequestMapping("/admin")
@@ -132,52 +131,45 @@ public class DeQuizAdminController {
 		  
 		  }
 	 
-	 @GetMapping("/forGotPassword")
-		private String forgotPassword(Model model) {
-			System.out.println("Inside the get method--rtertertrt-");
-			DeQuizLogin deQuizLogin = new DeQuizLogin();
-			model.addAttribute("deQuizLogin", deQuizLogin);
-			return "forGotPassword";
-		}
-	 
-		@PostMapping("/sendMail")
-		public String processForgotPasswordForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, BindingResult bindingResult, Model model) {
-			Optional<DeQuizLogin> dequizloginoformailmap = deQuizLoginDBRepo.findByDqlEmail(deQuizLogin.getDqlEmail());
-			if (!dequizloginoformailmap.isPresent()) {
-				bindingResult.addError(new FieldError("deQuizLogin", "dqlEmail", "Email id does not exist"));
-				return "forGotPassword";
-			}
-			else {
-				DeQuizLogin deQuizLoginEmail = dequizloginoformailmap.get();
-				File imageFile = null;
-				 try {
-					 MimeMessage message = emailService.createMimemessage();
-					MimeMessageHelper helper = new MimeMessageHelper(message, true);
-					 helper.setFrom("contact@dequiz.co.in");
-				     helper.setTo(deQuizLoginEmail.getDqlEmail());
-				     helper.setSubject("DeQuiz forgot Password support");
-				     helper.setText("Dear "+deQuizLoginEmail.getDqlFirstName()+"\n Your DeQuiz password is "+deQuizLoginEmail.getDqlPassword());
-				     
-				     try {
-						imageFile = new ClassPathResource("static/images/dequiz_thumnail.jpg").getFile();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				     helper.addInline("rightSideImage",imageFile);
-				     emailService.sendEmail(message);
-				     
-				} catch (MessagingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return "sentMail";
+	/*
+	 * @GetMapping("/forGotPassword") private String forgotPassword(Model model) {
+	 * System.out.println("Inside the get method--rtertertrt-"); DeQuizLogin
+	 * deQuizLogin = new DeQuizLogin(); model.addAttribute("deQuizLogin",
+	 * deQuizLogin); return "forGotPassword"; }
+	 */
+	/*
+	 * @PostMapping("/sendMail") public String
+	 * processForgotPasswordForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin
+	 * deQuizLogin, BindingResult bindingResult, Model model) {
+	 * Optional<DeQuizLogin> dequizloginoformailmap =
+	 * deQuizLoginDBRepo.findByDqlEmail(deQuizLogin.getDqlEmail()); if
+	 * (!dequizloginoformailmap.isPresent()) { bindingResult.addError(new
+	 * FieldError("deQuizLogin", "dqlEmail", "Email id does not exist")); return
+	 * "forGotPassword"; } else { DeQuizLogin deQuizLoginEmail =
+	 * dequizloginoformailmap.get(); File imageFile = null; try { MimeMessage
+	 * message = emailService.createMimemessage(); MimeMessageHelper helper = new
+	 * MimeMessageHelper(message, true); helper.setFrom("contact@dequiz.co.in");
+	 * helper.setTo(deQuizLoginEmail.getDqlEmail());
+	 * helper.setSubject("DeQuiz forgot Password support");
+	 * helper.setText("Dear "+deQuizLoginEmail.getDqlFirstName()
+	 * +"\n Your DeQuiz password is "+deQuizLoginEmail.getDqlPassword());
+	 * 
+	 * try { imageFile = new
+	 * ClassPathResource("static/images/dequiz_thumnail.jpg").getFile(); } catch
+	 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	 * helper.addInline("rightSideImage",imageFile);
+	 * emailService.sendEmail(message);
+	 * 
+	 * } catch (MessagingException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } return "sentMail";
+	 */
 				
-				
-				
-			}
-		
-		}
+	/*
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
 		
 		private List<DeQuizMaster> getExistingQuizes(String userId){
 			List<DeQuizMaster> qMlist = deQuizMasterDBRepo.findByDqlUserId(userId);
