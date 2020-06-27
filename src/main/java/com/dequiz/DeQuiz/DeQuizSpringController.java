@@ -20,7 +20,7 @@ import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.dto.DeQuizUser;
 import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
 import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
-
+/*
 
 @Controller
 public class DeQuizSpringController {
@@ -60,7 +60,7 @@ public class DeQuizSpringController {
 
 	
 	/* startquiz requires userId, quizId and questionNo */
-	@PostMapping("/startquiz")
+/*	@PostMapping("/startquiz")
 	private String showQuiz(@ModelAttribute("deQuizUser") DeQuizUser deQuizUser, Model model) {	
 		Integer quizId = deQuizUser.getDquQuizId() * 100 + deQuizUser.getDquQuestionNo() + 1;
 		DeQuizMaster deQuizMaster = new DeQuizMaster ();
@@ -92,7 +92,7 @@ public class DeQuizSpringController {
 	}
 	
 /*  showresult needs 4 parameters - quizId, questionNo, answer and userId*/
-	@PostMapping("/showresult")
+/*	@PostMapping("/showresult")
 	private String showResult(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model){
 		System.out.println("Correct Ans: " +deQuizMaster.getDeqmAnswer() + " Selected:" + deQuizMaster.getSelectedAnswer());
 		
@@ -151,3 +151,4 @@ public class DeQuizSpringController {
 		return "finalresult";
 	}
 }
+*/

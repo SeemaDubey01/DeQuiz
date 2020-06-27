@@ -85,7 +85,8 @@ public class WebSocketDAO {
 			return false;
 		}
 		deQuizUser = deQuizUserMap.get();
-		if (deQuizUser.getDquQuizId() != wsAnsMessage.getWsQuizId()) {
+		if (!deQuizUser.getDquQuizId().equals(wsAnsMessage.getWsQuizId())) {
+			System.out.println("msg: " + wsAnsMessage.getWsQuizId() + " table:" + deQuizUser.getDquQuizId());
 			return false;
 		}
 		deQuizUser.setDquMarks(wsAnsMessage.getWsMarks());

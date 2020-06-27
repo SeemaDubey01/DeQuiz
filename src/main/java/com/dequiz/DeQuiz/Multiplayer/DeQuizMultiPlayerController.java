@@ -16,7 +16,7 @@ import com.dequiz.DeQuiz.dto.DeQuizUser;
 import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
 
 @Controller
-@RequestMapping("/multiplayer")
+//@RequestMapping("/multiplayer")
 public class DeQuizMultiPlayerController {
 
 	@Autowired
@@ -46,8 +46,17 @@ public class DeQuizMultiPlayerController {
 			deQuizUser.setDquTotalMarks(0);
 			deQuizUser.setDquQuestionNo(0);
 			deQuizUserRepo.save(deQuizUser);
-			model.addAttribute("user", deQuizUser);
-			return "registerok";
+//			model.addAttribute("user", deQuizUser);
+//			return "registerok";
+			
+			DeQuizMaster deQuizMaster = new DeQuizMaster ();
+			deQuizMaster.setDeqmQuizId(deQuizUser.getDquQuizId());
+			deQuizMaster.setDquUserName(deQuizUser.getDquUserName());
+			deQuizMaster.setDquUserId(deQuizUser.getDquUserId());
+			deQuizMaster.setDquUserName(deQuizUser.getDquUserName());
+			
+			model.addAttribute("deQuizMaster", deQuizMaster);
+			return "userInQuiz";
 		}
 	}
 /* Waiting for Admin to start the quiz - no userId, quizId & questionNo; output quizMaster, post participantDashboard*/

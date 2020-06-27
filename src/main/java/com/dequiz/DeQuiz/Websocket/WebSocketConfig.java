@@ -17,12 +17,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-/*		registry.setApplicationDestinationPrefixes("/app");
+		registry.setApplicationDestinationPrefixes("/app");
 		registry.enableStompBrokerRelay("/topic")
 			.setRelayHost("localhost")
 			.setRelayPort(61616).setSystemLogin("mdadmin").setSystemPasscode("mdadmin")
 			.setClientLogin("mdadmin").setClientPasscode("mdadmin");
-*/	
+	
 	}
 
 }

@@ -38,7 +38,7 @@ function onMessageReceivedAdminQueue(payload){
 			$('#paritipants').append(participantList);
 			console.log("new player joined: " + wsMessage.wsUserName );
 		} else if (wsMessage.wsMessageType === 'ShowQuiz') {
-			initializeAnsCounter();
+			initializeAnsCounter(wsMessage.wsAnswer);
 			populateQuestionDiv(wsMessage, "admin");
 			console.log("quiz: " + wsMessage.wsQuizId + " question: " + wsMessage.wsQuestionNo + " received");
 		} else if (wsMessage.wsMessageType == "SendAnswer"){
@@ -208,11 +208,29 @@ function displayFinalResult(wsUserName){
 	$('#finalResult').append("Winner of the Quiz:<H3 Style='color:red'>" + wsUserName +"</H3>");
 	$('#finalResult').append("<table><tr><td><H3><a href='/index.html'>Home</a></H3></td></tr></table>");
 }
-function initializeAnsCounter(){
+function initializeAnsCounter(wsAnswer){
 	$("#ansA").text(0);
 	$("#ansB").text(0);
 	$("#ansC").text(0);
 	$("#ansD").text(0);
+	$("#ansA").css("color","red");
+	$("#ansB").css("color","red");
+	$("#ansC").css("color","red");
+	$("#ansD").css("color","red");
+	switch (wsAnswer){
+	case "a" :
+		$("#ansA").css("color","green");
+		break;
+	case "b":
+		$("#ansB").css("color","green");
+		break;
+	case "c":
+		$("#ansC").css("color","green");
+		break;
+	case "d":
+		$("#ansD").css("color","green");
+	}
+	
 }
 function saveUserId(userId){
 	 thisUserId = userId;
