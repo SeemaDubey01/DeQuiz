@@ -56,6 +56,7 @@ public class WebSocketDAO {
 			WSResultMessage wsResultMessage = new WSResultMessage();
 			wsResultMessage = this.getResultList(wsQuizId, 1);
 			wsQuizMessage.setWsUserName(wsResultMessage.getWsUserList().get(0).getDquUserName());
+			this.setQuizInactive(wsQuizId);
 		}
 		return wsQuizMessage;
 	}
@@ -114,6 +115,28 @@ public class WebSocketDAO {
 			wsResultMessage.setWsUserList(userResultList);
 		}
 		return wsResultMessage;
+	}
+
+	public void setQuizActive(Integer deqmQuizId) {
+		Integer wsSrNbr = deqmQuizId * 100 + 1;
+		DeQuizMaster deQuizMaster = new DeQuizMaster();
+		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(wsSrNbr);
+		if (deQuizMasterMap.isPresent()){
+			deQuizMaster = deQuizMasterMap.get();
+			deQuizMaster.setDeqmQuizActive("Y");
+			deQuizMasterRepo.save(deQuizMaster);
+		}
+	}
+	
+	public void setQuizInactive(Integer deqmQuizId) {
+		DeQuizMaster deQuizMaster = new DeQuizMaster();
+		Integer wsSrNbr = deqmQuizId * 100 + 1;
+		Optional<DeQuizMaster> deQuizMasterMap = deQuizMasterRepo.findById(wsSrNbr);
+		if (deQuizMasterMap.isPresent()){
+			deQuizMaster = deQuizMasterMap.get();
+			deQuizMaster.setDeqmQuizActive("N");
+			deQuizMasterRepo.save(deQuizMaster);
+		}
 	}
 }
 

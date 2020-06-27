@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.dequiz.DeQuiz.Websocket.WebSocketDAO;
 import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.dto.DeQuizUser;
@@ -86,7 +85,8 @@ public class DeQuizMultiPlayerController {
 /* Admin waiting for participant - no quizId, output quizId, post adminStartQuiz*/
 	@PostMapping("/adminStartQuiz")
 	private String postAdminStartQuiz(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model) {
-// set the quiz status to Active		
+// set the quiz status to Active	
+		wsMessageDAO.setQuizActive(deQuizMaster.getDeqmQuizId());
 		model.addAttribute("deQuizMaster", deQuizMaster);
 		System.out.println("Admin start quiz");
 		return "adminInQuiz";

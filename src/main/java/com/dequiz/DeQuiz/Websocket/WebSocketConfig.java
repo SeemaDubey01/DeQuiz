@@ -15,7 +15,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 		registry.addEndpoint("/dequizwebsocket").withSockJS();
 	}
 
-	@Override
+	/*	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		registry.setApplicationDestinationPrefixes("/app");
 		registry.enableStompBrokerRelay("/topic")
@@ -23,6 +23,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 			.setRelayPort(61616).setSystemLogin("mdadmin").setSystemPasscode("mdadmin")
 			.setClientLogin("mdadmin").setClientPasscode("mdadmin");
 	
-	}
+	}*/
 
 }
