@@ -37,35 +37,22 @@
 
 <div align="center">
 		<h2>Create your quiz</h2>
-		<form:form action="/createquizstatus" method="post" modelAttribute="quizmaster">
-		<form:hidden path="deqmQuizId" value ="${quizmaster.deqmQuizId}"/>
-		<form:hidden path="deqmQuestionNo" value ="${quizmaster.deqmQuestionNo}"/>
-			<form:label path="deqmQuizId"><H2> Quiz#: ${quizmaster.deqmQuizId}</H2></form:label><p/>
-			<form:label path="deqmQuestionNo">Question#: ${quizmaster.deqmQuestionNo}</form:label><p/>
+		<form:form action="/createquizDetail" method="post" modelAttribute="quizmaster">
+		<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>
 			<table>
 			<tr>
-			<td><form:label path="deqmQuestion"> Question: </form:label></td>
-			<td><form:input path="deqmQuestion"/></td> 
-			</tr><tr>
-			<td><form:label path="deqmOption_a"> Option A: </form:label></td>
-			<td><form:input path="deqmOption_a" /></td>
-			</tr><tr>
-			<td><form:label path="deqmOption_b"> Option B: </form:label></td>
-			<td><form:input path="deqmOption_b" /></td>
-			</tr><tr>
-			<td><form:label path="deqmOption_c"> Option C: </form:label></td>
-			<td><form:input path="deqmOption_c" /></td>
-			</tr><tr>
-			<td><form:label path="deqmOption_d"> Option D: </form:label></td>
-			<td><form:input path="deqmOption_d" /></td>
-			</tr><tr>
-			<td><form:label path="deqmAnswer"> Correct option: </form:label></td>
-			<td><form:select path="deqmAnswer">
-			    <form:option value="a" label="a"></form:option>
-			    <form:option value="b" label="b"></form:option>
-			    <form:option value="c" label="c"></form:option>
-			    <form:option value="d" label="d"></form:option>
+			<form:label path="dqlUserId"><H2> AdminId#: ${deQuizMaster.dqlUserId}</H2></form:label><p/>
+			<td><form:label path="deqmQuizDesc"> Quiz Desc: </form:label></td>
+			<td><form:input path="deqmQuizDesc"/></td> 
+			</tr>
+			<td><form:label path="deqmQuizActive"> Active: </form:label></td>
+			<td><form:select path="deqmQuizActive">
+			    <form:option value="Y" label="Y"></form:option>
+			    <form:option value="N" label="N"></form:option>
 			</form:select>
+			</td></tr>
+			<td><form:label path="deqmTimer"> Timer (seconds): </form:label></td>
+			<td><form:input path="deqmTimer" value="15" /></td>
 			</tr>
 			</table><p/>
 			<form:button>submit</form:button><p/>

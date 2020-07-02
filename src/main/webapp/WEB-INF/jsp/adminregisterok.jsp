@@ -37,7 +37,8 @@
 <div class="content-window">
 <H2>Registration Status <span></span></H2>
 <div align="center" style="font-size:min(5vw,40);">
-<form:form action="/createquiz" method= "get" modelAttribute="deQuizLogin">
+<form:form action="/createquizHeader" method= "get" modelAttribute="deQuizLogin">
+<form:hidden path="dqlUserId" value ="${deQuizLogin.dqlUserId}"/>
 	<form:label path="dqlUserId">Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
     <form:button>Create Quiz</form:button>
     

@@ -116,6 +116,7 @@ public class DeQuizAdminController {
 	
 		else {
 			model.addAttribute("deQuizLogin", deQuizLogin);
+			model.addAttribute("dqlUserId",deQuizLogin.getDqlUserId());
 			deQuizLoginDBRepo.save(deQuizLogin);
 			return "adminregisterok";
 
