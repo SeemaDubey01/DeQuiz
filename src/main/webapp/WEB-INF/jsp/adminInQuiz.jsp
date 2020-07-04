@@ -68,7 +68,7 @@ $(document).ready(function(){
 <!--  your result -->
 <div id="resultDiv" align="center" style="font-size:min(5vw,40);">
 <div id="finalResult"></div>
-<div id="rankingDiv"></div><p/>
+<div id="rankingDiv" class="rankingDiv"></div><p/>
 <button id="nextQuestion">Next Question</button>
 </div>
 <!--  end of your result -->
