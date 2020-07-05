@@ -9,11 +9,16 @@
 </head>
 <body>
 <H2> Create Quiz Status</H2><p/>
-<form:form action="/createquiz" method="get"  modelAttribute="quizmaster">
+<form:form action="/createquiz" method="post"  modelAttribute="quizmaster">
 	<form:hidden path="deqmQuizId" value ="${quizmaster.deqmQuizId}"/>
 	<form:hidden path="deqmQuestionNo" value ="${quizmaster.deqmQuestionNo}"/>
+	<form:hidden path="dqlUserId" value ="${quizmaster.dqlUserId}"/>
+<form:hidden path="deqmQuizDesc" value ="${quizmaster.deqmQuizDesc}"/>
+<form:hidden path="deqmQuizActive" value ="${quizmaster.deqmQuizActive}"/>
+<form:hidden path="deqmTimer" value ="${quizmaster.deqmTimer}"/>
 	<form:label path="deqmQuizId">Quiz#: <span>${quizmaster.deqmQuizId}</span></form:label><p/>
 	<form:label path="deqmQuestionNo">Question: <span>${quizmaster.deqmQuestionNo}</span></form:label><p/>
+	
 	<form:button>Create Another</form:button>
 </form:form>
 

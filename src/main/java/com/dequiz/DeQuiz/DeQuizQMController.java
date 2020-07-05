@@ -24,6 +24,9 @@ public class DeQuizQMController {
 		System.out.println("the  model here is---"+model);
 		System.out.println("the object which comes here is"+deQuizLogin.getDqlUserId());
 		DeQuizMaster quizmaster = new DeQuizMaster();
+		Random random = new Random();
+		int quizId = 100+random.nextInt(999-100);
+		quizmaster.setDeqmQuizId(quizId);
 		quizmaster.setDqlUserId(deQuizLogin.getDqlUserId());
 		System.out.println("the object which comes here in master is"+quizmaster.getDqlUserId());
 		model.addAttribute("quizmaster", quizmaster);
@@ -33,8 +36,8 @@ public class DeQuizQMController {
 	@PostMapping("/createquizDetail")
 	private String postQuizHeader(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
 		System.out.println("The admi created the quiz is---"+quizmaster.getDqlUserId());
-		System.out.println("The description of the quiz is"+quizmaster.getDeqmQuizDesc());
-		quizmaster.setDeqmSrNbr(00);
+		System.out.println("The quiz id22222222222 of the quiz is"+quizmaster.getDeqmQuizId());
+		quizmaster.setDeqmSrNbr(quizmaster.getDeqmQuizId()*100);
 		quizmaster.setDeqmQuestion("");
 		quizmaster.setDeqmOption_a("");
 		quizmaster.setDeqmOption_b("");
@@ -42,20 +45,17 @@ public class DeQuizQMController {
 		quizmaster.setDeqmOption_d("");
 		quizmaster.setDeqmAnswer("");
 		quizmaster.setDeqmQuestionNo(00);
-		quizmaster.setDeqmQuizId(null);
 		quizmaster.setDquMarks(00);
+		
 		dequizMasterrepo.save(quizmaster);
 		model.addAttribute("quizmaster", quizmaster);
 		return "createquizDetail";
 	}
 	
-	@GetMapping("/createquiz")
+	@PostMapping("/createquiz")
 	private String CrateQuiz(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
-		System.out.println("check hidden is working----"+quizmaster.getDeqmQuizActive());
-		if (quizmaster.getDeqmQuizId() == null ) {
-			Random random = new Random();
-			int quizId = 100+random.nextInt(999-100);
-			quizmaster.setDeqmQuizId(quizId);
+		System.out.println("The value of question number coming as---"+quizmaster.getDeqmQuestionNo());
+		if (quizmaster.getDeqmQuestionNo() == null ) {
 			quizmaster.setDeqmQuestionNo(1);
 		} 
 		model.addAttribute("quizmaster", quizmaster);
@@ -64,7 +64,7 @@ public class DeQuizQMController {
 
 	@PostMapping("/createquizstatus")
 	private String CreateQuizStatus(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
-	
+		System.out.println("Inside create status---"+quizmaster.getDeqmQuestionNo());
 // insert the quiz into DeQuizMaster table
 		Integer quizSrNo = quizmaster.getDeqmQuizId() * 100 + quizmaster.getDeqmQuestionNo();
 		
