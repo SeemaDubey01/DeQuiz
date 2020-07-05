@@ -66,7 +66,7 @@ $(document).ready(function(){
 </div>
 <div id="resultDiv" align="center" style="font-size:min(5vw,40);">
 <div id="oneresult"><H3>Result</H3>
-<table>
+<table style="border: 1px solid black">
 	<tr><td>Answer for last question</td><td>....</td>
 	<td><b><span id="lastResult">Incorrect</span></b></td></tr>
 	<tr><td>Marks for last question</td><td>....</td>
@@ -74,8 +74,13 @@ $(document).ready(function(){
 	<tr><td>Your total marks</td><td>....</td>
 	<td><b><span id="totalMarks">0</span></b></td></tr>
 </table>
+<p/>
 </div><div id="finalResult"></div>
-<div id="rankingDiv"></div>
+<div id="rankingDiv" class="rankingDiv">
+<table><tr><td colspan="4">Top 10 ranking</td></tr>
+<tr><td>rank</td><td>name</td><td>total marks</td><td>last q marks</td></tr>
+</table>
+</div>
 </div>
 <!--  end of your result -->
 </body>

@@ -54,7 +54,11 @@ body {
 	color: white;
 	background-color: blue;
 }
-.rankingDiv > td {
+.rankingDiv >  table {
+	border-collapse: collapse;
+}
+.rankingDiv >  table td {
 	border: 1px solid black;
+	padding: 5px;
 	text-align: center;
 }

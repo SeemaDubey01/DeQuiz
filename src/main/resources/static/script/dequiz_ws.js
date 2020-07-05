@@ -127,6 +127,8 @@ function displayQuestionDiv(timer, source){
 				dispalyQuestion = "N";
 //show options
 				remainingSec = timer;
+				marks = remainingSec * 100;
+				$("#timer").text (remainingSec);
 				//if (source == "participant") 	remainingSec = 5;
 				$("#quizdiv").show();
 				$("#timertable").show();
@@ -190,15 +192,19 @@ function displayResultTable(userList, listSize){
 	clearInterval(timerId1);
 	clearInterval(timerId2);
 	
-	var wsInnerHtml="<H3>Top 10 positions</H3><table><tr><td>Position</td><td>Participant</td><td>Total Marks</td></tr>";
+	var wsInnerHtml="<table><tr><td colspan='4'><b>Top 10 positions<b></td></tr>" +
+	"<tr><td>Position</td><td>Participant</td><td>Total Marks</td><td>Last Marks</td></tr>";
 	var rank;
-	$('#rankingDiv').html(wsInnerHtml);
+	//$('#rankingDiv').html(wsInnerHtml);
 	$.each(userList, function(index, list){
 		rank = parseInt(index,10) + 1;
-		wsInnerHtml = "<tr><td>" + rank + "</td><td>" + list.dquUserName + "</td><td>" + list.dquTotalMarks + "</td></tr>"
-		$('#rankingDiv').append(wsInnerHtml);
+		wsInnerHtml = wsInnerHtml + "<tr><td>" + rank + "</td><td>" + list.dquUserName + "</td><td>" + 
+		list.dquTotalMarks + "</td><td>" + list.dquMarks + "</td></tr>"
+		//$('#rankingDiv').append(wsInnerHtml);
 	})
-	$('#rankingDiv').append("</table>");
+	//$('#rankingDiv').append("</table>");
+	wsInnerHtml = wsInnerHtml + "</table>";
+	$('#rankingDiv').html(wsInnerHtml);
 	$("#resultDiv").show();
 }
 function displayFinalResult(wsUserName){
