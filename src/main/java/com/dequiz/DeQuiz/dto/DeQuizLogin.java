@@ -2,6 +2,7 @@ package com.dequiz.DeQuiz.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import com.dequiz.DeQuiz.validator.ExtendedEmailValidator;
@@ -20,8 +21,20 @@ public class DeQuizLogin {
 	@ExtendedEmailValidator
 	private String dqlEmail;
 	
+	@Transient
+	private Integer deqmQuizId;
+	@Transient
+	private String dqlOperationType;
+	
 	
 
+	public Integer getDeqmQuizId() {
+		return deqmQuizId;
+	}
+	public void setDeqmQuizId(Integer deqmQuizId) {
+		this.deqmQuizId = deqmQuizId;
+	}
+	
 	public String getDqlUserId() {
 		return dqlUserId;
 	}
@@ -52,6 +65,12 @@ public class DeQuizLogin {
 	}
 	public void setDqlEmail(String dqlEmail) {
 		this.dqlEmail = dqlEmail;
+	}
+	public String getDqlOperationType() {
+		return dqlOperationType;
+	}
+	public void setDqlOperationType(String dqlOperationType) {
+		this.dqlOperationType = dqlOperationType;
 	}
 	
 	

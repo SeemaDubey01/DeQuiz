@@ -21,8 +21,8 @@ public class DeQuizMaster {
 	private String dqlUserId;
 	private String deqmQuizDesc;
 	
-	
-
+	@Transient
+    private String editType;
 	@Transient
 	private String selectedAnswer;
 	@Transient
@@ -40,6 +40,12 @@ public class DeQuizMaster {
 	
 	public String getDeqmQuizDesc() {
 		return deqmQuizDesc;
+	}
+	public String getEditType() {
+		return editType;
+	}
+	public void setEditType(String editType) {
+		this.editType = editType;
 	}
 	public void setDeqmQuizDesc(String deqmQuizDesc) {
 		this.deqmQuizDesc = deqmQuizDesc;

@@ -11,11 +11,67 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Online Quiz for Everyone - DeQuiz</title>
 <link href="CSS/dequiz.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="script/dequiz.js"></script>
+<script type="text/javascript">
+
+function clickedit(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		$('#dqlOperationType').attr('value','edit');
+		$('#quizform').submit();
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+function clickview(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		$('#dqlOperationType').attr('value','view');
+		$('#quizform').submit();
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+function clickstart(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		$('#dqlOperationType').attr('value','start');
+		$('#quizform').submit();
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+function clickdelete(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		  var radioValue = $("input[name='deqmQuizId']:checked").val();
+		var result = confirm("Want to delete Quiz Id"+ radioValue +" ?");
+		  if (result==true) {
+			  $('#dqlOperationType').attr('value','delete');
+				$('#quizform').submit();
+		  } else {
+		   return false;
+		  }
+		
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+	
+</script>
 </head>
 <body onload="MM_preloadImages('images/home_clicked.jpg','images/home_hover.jpg','images/aboutus_clicked.jpg','images/aboutus_hover.jpg','images/joinquiz_clicked.jpg','images/joinquiz_hover.jpg','images/contactus_clicked.jpg','images/contactus_hover.jpg','images/login_clicked.jpg','images/login_hover.jpg')">
 <div class="wrapper">
-<!--  page header containg heading and menu -->
+<!--  page header containing heading and menu -->
 <div align="center">
   <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
   </span> <span class="header">De Quiz</span>
@@ -37,21 +93,32 @@
 <div class="content-window">
 <H2>Registration Status <span></span></H2>
 <div align="center" style="font-size:min(5vw,40);">
-<form:form action="/createquizHeader" method= "get" modelAttribute="deQuizLogin">
+<form:form action="/createquizHeader" method= "get" id="quizform" modelAttribute="deQuizLogin">
 <form:hidden path="dqlUserId" value ="${deQuizLogin.dqlUserId}"/>
-	<form:label path="dqlUserId">Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
-    <form:button>Create Quiz</form:button>
+<form:hidden path="dqlPassword" value ="${deQuizLogin.dqlPassword}"/>
+
+<form:hidden path="dqlOperationType" value ="create"/>
+
+	<form:label path="dqlUserId"> Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
+    <form:button name="create" value="create" >Create Quiz</form:button>
+    <button name="view" type="button" value="view" onclick="clickview()">View Quiz</button>
+    <button name="edit" type="button" value="edit" onclick="clickedit()">Edit Quiz</button>
+    <button name="start" type="button" value="start" onclick="clickstart()">Start Quiz</button>
+    <button name ="delete" type="button" value ="delete" onclick="clickdelete()">Delete Quiz</button>
+    <div id="errormessage" class="error"></div>
     
     <table>
 	<c:if test="${not empty existingDistinctQuizlist}">
 
 	   <tr>
+	   <td>Select quiz id </td>
 	   <td>QuizId</td>
 	   <td>Quiz Description</td>
 	   </tr>
         <c:forEach var="listValue" items="${existingDistinctQuizlist}">
         <tr>
-            <td>${listValue.deqmQuizId}</td>
+        <td><form:radiobutton path="deqmQuizId" value ="${listValue.deqmQuizId}"/></td>
+           <td> ${listValue.deqmQuizId}</td>
              <td>${listValue.deqmQuizDesc}</td>
              </tr>
         </c:forEach>

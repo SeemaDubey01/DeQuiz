@@ -61,6 +61,8 @@ public class DeQuizAdminController {
 	
 	@PostMapping("/loginadmin")
 	public String submitForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, BindingResult bindingResult, Model model) {
+		System.out.println("Inside the logged in user---"+deQuizLogin.getDqlUserId());
+		System.out.println("Inside the logged in user---"+deQuizLogin.getDqlPassword());
 		if(deQuizLogin.getDqlUserId()!=null) {
 			DeQuizLogin dequizlogin = getAdmin(deQuizLogin.getDqlUserId());
 			
