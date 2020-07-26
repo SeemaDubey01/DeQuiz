@@ -88,6 +88,7 @@ $(document).ready(function(){
 <!--  content block -->
 <div class="content-window">
 <h1>Start Quiz</h1>
+<h3>the logged in  user is ${sessionScope.deQuizLogin.dqlUserId}</h3>
 <div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
 <form:form id="quizform" action="/getNextQuestioin"  method="post" modelAttribute="deQuizMaster">

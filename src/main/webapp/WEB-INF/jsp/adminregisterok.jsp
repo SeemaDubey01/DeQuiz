@@ -93,11 +93,10 @@ function clickdelete(){
 <div class="content-window">
 <H2>Registration Status <span></span></H2>
 <div align="center" style="font-size:min(5vw,40);">
-<form:form action="/createquizHeader" method= "get" id="quizform" modelAttribute="deQuizLogin">
+<form:form action="/createquizHeader" method= "post" id="quizform" modelAttribute="deQuizLogin">
 <form:hidden path="dqlUserId" value ="${deQuizLogin.dqlUserId}"/>
-<form:hidden path="dqlPassword" value ="${deQuizLogin.dqlPassword}"/>
 
-<form:hidden path="dqlOperationType" value ="create"/>
+<form:hidden path="dqlOperationType" value ="create" />
 
 	<form:label path="dqlUserId"> Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
     <form:button name="create" value="create" >Create Quiz</form:button>

@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dequiz.DeQuiz.Websocket.WebSocketDAO;
 import com.dequiz.DeQuiz.dto.DeQuizLogin;
@@ -19,6 +22,7 @@ import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
 
 
 @Controller
+@SessionAttributes({"deQuizLogin","existingDistinctQuizlist"})
 public class DeQuizQMController {
 	@Autowired
 	DeQuizMasterDBRepo dequizMasterrepo;
@@ -26,8 +30,8 @@ public class DeQuizQMController {
 	@Autowired
 	WebSocketDAO wsMessageDAO;
 	
-	@GetMapping("/createquizHeader")
-	private String createQuizHeader(@ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, Model model) {
+	@PostMapping("/createquizHeader")
+	private String createQuizHeader(@ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, Model model, HttpSession session) {
 		System.out.println("The value of selected button is22222222222222222222222 ----"+deQuizLogin.getDqlOperationType());
 		String returntype = "";
 		String operationType = deQuizLogin.getDqlOperationType();
@@ -68,21 +72,9 @@ public class DeQuizQMController {
 			returntype = "adminInQuiz";
 		}
 		if(operationType.equalsIgnoreCase("delete")) {
-			System.out.println("The value of the list is"+model.getAttribute("existingDistinctQuizlist"));
 			Integer id = deQuizLogin.getDeqmQuizId();
 			model.addAttribute("quizId", id);
 			dequizMasterrepo.deleteByDeqmQuizId(id);
-			List<DeQuizMaster> existingQuizlist = new ArrayList<DeQuizMaster>();
-			List<DeQuizMaster> existingDistinctQuizlist = new ArrayList<DeQuizMaster>();
-			if(deQuizLogin!=null && deQuizLogin.getDqlUserId()!=null) {
-				existingQuizlist=getExistingQuizes(deQuizLogin.getDqlUserId());
-				existingDistinctQuizlist = io.vavr.collection.List.ofAll(existingQuizlist)
-						  .distinctBy(DeQuizMaster::getDeqmQuizId)
-						  .toJavaList();
-			}
-			model.addAttribute("existingQuizlist", existingQuizlist);
-			model.addAttribute("existingDistinctQuizlist", existingDistinctQuizlist);
-			model.addAttribute("deQuizLogin", deQuizLogin);
 			
 			returntype = "adminregisterok";
 		}
@@ -137,17 +129,13 @@ public class DeQuizQMController {
 	}
 	
 	@PostMapping("/getNextQuestioin")
-	private String getNextQuestion(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model) {
-		//Integer nextQuestionNo = deQuizMaster.getDeqmQuestionNo()+1;
-		//deQuizMaster =  dequizMasterrepo.findByDeqmQuizIdAndDeqmQuestionNo(deQuizMaster.getDeqmQuizId(), nextQuestionNo);
-		//model.addAttribute("deQuizMaster", deQuizMaster);
-		
+	private String getNextQuestion(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model,HttpSession session) {
 		Integer quizId = deQuizMaster.getDeqmQuizId() * 100 + deQuizMaster.getDeqmQuestionNo() + 1;
 	
 		Optional<DeQuizMaster> deQuizMasterMap = dequizMasterrepo.findById(quizId);
 		if (!deQuizMasterMap.isPresent()){
 			
-			return "allQuestions";
+			return "adminregisterok";
 		}
 		
 	
@@ -162,7 +150,7 @@ public class DeQuizQMController {
 		Integer quizId = deQuizMaster.getDeqmQuizId() * 100 + deQuizMaster.getDeqmQuestionNo() + 1;
 		Optional<DeQuizMaster> deQuizMasterMap = dequizMasterrepo.findById(quizId);
 		if (!deQuizMasterMap.isPresent()){
-			return "allQuestions";
+			return "adminregisterok";
 		}
 		deQuizMaster = deQuizMasterMap.get();
 		model.addAttribute("deQuizMaster",deQuizMaster);
@@ -189,9 +177,12 @@ public class DeQuizQMController {
 			}
 		return "editquiz";
 	}
-	private List<DeQuizMaster> getExistingQuizes(String userId){
-		List<DeQuizMaster> qMlist = dequizMasterrepo.findByDqlUserId(userId);
-		  return qMlist;
+	
+	@GetMapping("/getUserQuizList")
+	private String getUserQuizList(Model model) {
+	
+			return "adminregisterok";
+		
 	}
 
 }

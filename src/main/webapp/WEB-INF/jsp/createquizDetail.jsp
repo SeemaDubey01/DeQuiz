@@ -20,6 +20,6 @@
 	<form:button>Create Quiz Details</form:button>
 </form:form>
 
-<a href="/">Back</a>
+<a href="/getUserQuizList">Back</a>
 </body>
 </html>

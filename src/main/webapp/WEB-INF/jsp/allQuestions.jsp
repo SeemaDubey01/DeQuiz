@@ -90,7 +90,8 @@ $(document).ready(function(){
 <h1>You have reached the maximum number of Questions in selected quiz</h1>
 <div align="center" style="font-size:min(5vw,40);">
 
-<a href="/">Home</a>
+
+<a href="/loginadmin">Back</a>
 </div><p/>
 </div>
 <!--  End of content block -->
