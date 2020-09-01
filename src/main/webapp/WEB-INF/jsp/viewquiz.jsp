@@ -117,6 +117,10 @@ $(document).ready(function(){
   <p id="optionD">
   <form:label path="deqmOption_d">${deQuizMaster.deqmOption_d}</form:label>
   </p>
+  <p id="Answer">
+  Answer
+  <form:label path="deqmAnswer">${deQuizMaster.deqmAnswer}</form:label>
+  </p>
   </div><p/>
   <form:button name="submit" value = "submit">Next Question</form:button>
 </form:form>

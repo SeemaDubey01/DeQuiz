@@ -26,6 +26,17 @@ function clickedit(){
 	}
 }
 
+function clickeditNew(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		$('#dqlOperationType').attr('value','editNew');
+		$('#quizform').submit();
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
 function clickview(){
 	if($('input[name=deqmQuizId]:checked').length > 0){
 		$('#dqlOperationType').attr('value','view');
@@ -54,6 +65,24 @@ function clickdelete(){
 		var result = confirm("Want to delete Quiz Id"+ radioValue +" ?");
 		  if (result==true) {
 			  $('#dqlOperationType').attr('value','delete');
+				$('#quizform').submit();
+		  } else {
+		   return false;
+		  }
+		
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+function clickresetResult(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		  var radioValue = $("input[name='deqmQuizId']:checked").val();
+		var result = confirm("Want to clear the result for Quiz Id"+ radioValue +" ?");
+		  if (result==true) {
+			  $('#dqlOperationType').attr('value','resetResult');
 				$('#quizform').submit();
 		  } else {
 		   return false;
@@ -103,7 +132,8 @@ function clickdelete(){
     <button name="view" type="button" value="view" onclick="clickview()">View Quiz</button>
     <button name="edit" type="button" value="edit" onclick="clickedit()">Edit Quiz</button>
     <button name="start" type="button" value="start" onclick="clickstart()">Start Quiz</button>
-    <button name ="delete" type="button" value ="delete" onclick="clickdelete()">Delete Quiz</button>
+    <button name ="delete" type="button" value ="delete" onclick="clickdelete()">Delete Quiz</button></p>
+    <button name ="resetResult" type="button" value ="resetResult" onclick="clickresetResult()">Reset Result</button>
     <div id="errormessage" class="error"></div>
     
     <table>

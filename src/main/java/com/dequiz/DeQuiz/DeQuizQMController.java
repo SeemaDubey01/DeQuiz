@@ -19,6 +19,7 @@ import com.dequiz.DeQuiz.Websocket.WebSocketDAO;
 import com.dequiz.DeQuiz.dto.DeQuizLogin;
 import com.dequiz.DeQuiz.dto.DeQuizMaster;
 import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
+import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
 
 
 @Controller
@@ -26,6 +27,9 @@ import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
 public class DeQuizQMController {
 	@Autowired
 	DeQuizMasterDBRepo dequizMasterrepo;
+	
+	@Autowired
+	DeQuizUserDBRepo deQuizUserDBRepo;
 	
 	@Autowired
 	WebSocketDAO wsMessageDAO;
@@ -63,6 +67,13 @@ public class DeQuizQMController {
 			model.addAttribute("deQuizMaster", deQuizMaster);
 			returntype = "editquiz";
 		}
+		if(operationType.equalsIgnoreCase("editNew")) {
+			DeQuizMaster deQuizMaster = new DeQuizMaster ();
+			List<DeQuizMaster> deQuizMasterList = new ArrayList<DeQuizMaster>();
+			deQuizMasterList = dequizMasterrepo.findByDeqmQuizId(deQuizLogin.getDeqmQuizId());
+			model.addAttribute("deQuizMasterList", deQuizMasterList);
+			returntype = "editquizNew";
+		}
 		if(operationType.equalsIgnoreCase("start")) {
 			DeQuizMaster deQuizMaster = new DeQuizMaster ();
 			deQuizMaster.setDeqmQuizId(deQuizLogin.getDeqmQuizId());
@@ -75,6 +86,13 @@ public class DeQuizQMController {
 			Integer id = deQuizLogin.getDeqmQuizId();
 			model.addAttribute("quizId", id);
 			dequizMasterrepo.deleteByDeqmQuizId(id);
+			
+			returntype = "adminregisterok"; 
+		}
+		if(operationType.equalsIgnoreCase("resetResult")) {
+			Integer id = deQuizLogin.getDeqmQuizId();
+			model.addAttribute("quizId", id);
+			deQuizUserDBRepo.deleteByDquQuizId(id);
 			
 			returntype = "adminregisterok";
 		}

@@ -30,6 +30,10 @@ public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {
 	
 	public List<DeQuizUser> findforResultDisplay(@Param("dquQuizId") Integer dquQuizId);
 	
+	@Transactional
+	@Modifying
+	public void deleteByDquQuizId(Integer dquQuizId);
+	
 	
 
 }
