@@ -38,13 +38,13 @@
 
 <div align="center">
 		<h2>Create your quiz</h2>
-		<form:form action="/createquizDetail" method="post" modelAttribute="quizmaster">
-		<form:hidden path="dqlUserId" value ="${quizmaster.dqlUserId}"/>
-		<form:hidden path="deqmQuizId" value ="${quizmaster.deqmQuizId}"/>
+		<form:form action="/createquizDetail" method="post" modelAttribute="deQuizMaster">
+		<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>
+		<form:hidden path="deqmQuizId" value ="${deQuizMaster.deqmQuizId}"/>
 			<table>
 			<tr>
-			<form:label path="dqlUserId"><H2> AdminId#: ${quizmaster.dqlUserId}</H2></form:label><p/>
-			<form:label path="deqmQuizId"><H2> Quiz#: ${quizmaster.deqmQuizId}</H2></form:label><p/>
+			<form:label path="dqlUserId"><H2> AdminId#: ${deQuizMaster.dqlUserId}</H2></form:label><p/>
+			<form:label path="deqmQuizId"><H2> Quiz#: ${deQuizMaster.deqmQuizId}</H2></form:label><p/>
 			<td><form:label path="deqmQuizDesc"> Quiz Desc: </form:label></td>
 			<td><form:input path="deqmQuizDesc"/></td> 
 			</tr>

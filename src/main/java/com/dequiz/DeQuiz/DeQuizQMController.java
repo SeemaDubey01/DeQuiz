@@ -42,13 +42,13 @@ public class DeQuizQMController {
 		String returntype = "";
 		String operationType = deQuizLogin.getDqlOperationType();
 		if(operationType.equalsIgnoreCase("create")) {
-		DeQuizMaster quizmaster = new DeQuizMaster();
+		DeQuizMaster deQuizMaster = new DeQuizMaster();
 		Random random = new Random();
 		int quizId = 100+random.nextInt(999-100);
-		quizmaster.setDeqmQuizId(quizId);
-		quizmaster.setDqlUserId(deQuizLogin.getDqlUserId());
-		System.out.println("the object which comes here in master is"+quizmaster.getDqlUserId());
-		model.addAttribute("quizmaster", quizmaster);
+		deQuizMaster.setDeqmQuizId(quizId);
+		deQuizMaster.setDqlUserId(deQuizLogin.getDqlUserId());
+		System.out.println("the object which comes here in master is"+deQuizMaster.getDqlUserId());
+		model.addAttribute("deQuizMaster", deQuizMaster);
 		returntype ="createquizHeader";
 		}
 		if(operationType.equalsIgnoreCase("addQuestion")) {
@@ -133,21 +133,21 @@ public class DeQuizQMController {
 	
 	
 	@PostMapping("/createquizDetail")
-	private String postQuizHeader(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
-		System.out.println("The admi created the quiz is---"+quizmaster.getDqlUserId());
-		System.out.println("The quiz id22222222222 of the quiz is"+quizmaster.getDeqmQuizId());
-		quizmaster.setDeqmSrNbr(quizmaster.getDeqmQuizId()*100);
-		quizmaster.setDeqmQuestion("Its quiz header for all the quiz created");
-		quizmaster.setDeqmOption_a("X");
-		quizmaster.setDeqmOption_b("X");
-		quizmaster.setDeqmOption_c("X");
-		quizmaster.setDeqmOption_d("X");
-		quizmaster.setDeqmAnswer("");
-		quizmaster.setDeqmQuestionNo(00);
-		quizmaster.setDquMarks(00);
+	private String postQuizHeader(@ModelAttribute("deQuizMaster") DeQuizMaster deQuizMaster, Model model) {
+		System.out.println("The admi created the quiz is---"+deQuizMaster.getDqlUserId());
+		System.out.println("The quiz id22222222222 of the quiz is"+deQuizMaster.getDeqmQuizId());
+		deQuizMaster.setDeqmSrNbr(deQuizMaster.getDeqmQuizId()*100);
+		deQuizMaster.setDeqmQuestion("Its quiz header for all the quiz created");
+		deQuizMaster.setDeqmOption_a("X");
+		deQuizMaster.setDeqmOption_b("X");
+		deQuizMaster.setDeqmOption_c("X");
+		deQuizMaster.setDeqmOption_d("X");
+		deQuizMaster.setDeqmAnswer("");
+		deQuizMaster.setDeqmQuestionNo(00);
+		deQuizMaster.setDquMarks(00);
 		
-		dequizMasterrepo.save(quizmaster);
-		model.addAttribute("quizmaster", quizmaster);
+		dequizMasterrepo.save(deQuizMaster);
+		model.addAttribute("quizmaster", deQuizMaster);
 		return "createquizDetail";
 	}
 	
