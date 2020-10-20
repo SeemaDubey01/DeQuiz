@@ -49,19 +49,24 @@
 			<table>
 			<tr>
 			<td><form:label path="deqmQuestion"> Question: </form:label></td>
-			<td><form:input path="deqmQuestion"/></td> 
+			<td><form:input path="deqmQuestion"/></td>  
+			<td><form:errors path="deqmQuestion" cssClass="error" /></td>
 			</tr><tr>
 			<td><form:label path="deqmOption_a"> Option A: </form:label></td>
 			<td><form:input path="deqmOption_a" /></td>
+			<td><form:errors path="deqmOption_a" cssClass="error" /></td>
 			</tr><tr>
 			<td><form:label path="deqmOption_b"> Option B: </form:label></td>
 			<td><form:input path="deqmOption_b" /></td>
+			<td><form:errors path="deqmOption_b" cssClass="error" /></td>
 			</tr><tr>
 			<td><form:label path="deqmOption_c"> Option C: </form:label></td>
 			<td><form:input path="deqmOption_c" /></td>
+			<td><form:errors path="deqmOption_c" cssClass="error" /></td>
 			</tr><tr>
 			<td><form:label path="deqmOption_d"> Option D: </form:label></td>
 			<td><form:input path="deqmOption_d" /></td>
+			<td><form:errors path="deqmOption_d" cssClass="error" /></td>
 			</tr><tr>
 			<td><form:label path="deqmAnswer"> Correct option: </form:label></td>
 			<td><form:select path="deqmAnswer">

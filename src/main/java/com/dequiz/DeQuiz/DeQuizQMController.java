@@ -6,10 +6,12 @@ import java.util.Optional;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -107,11 +109,11 @@ public class DeQuizQMController {
 		System.out.println("The admi created the quiz is---"+quizmaster.getDqlUserId());
 		System.out.println("The quiz id22222222222 of the quiz is"+quizmaster.getDeqmQuizId());
 		quizmaster.setDeqmSrNbr(quizmaster.getDeqmQuizId()*100);
-		quizmaster.setDeqmQuestion("");
-		quizmaster.setDeqmOption_a("");
-		quizmaster.setDeqmOption_b("");
-		quizmaster.setDeqmOption_c("");
-		quizmaster.setDeqmOption_d("");
+		quizmaster.setDeqmQuestion("Its quiz header for all the quiz created");
+		quizmaster.setDeqmOption_a("X");
+		quizmaster.setDeqmOption_b("X");
+		quizmaster.setDeqmOption_c("X");
+		quizmaster.setDeqmOption_d("X");
 		quizmaster.setDeqmAnswer("");
 		quizmaster.setDeqmQuestionNo(00);
 		quizmaster.setDquMarks(00);
@@ -122,18 +124,22 @@ public class DeQuizQMController {
 	}
 	
 	@PostMapping("/createquiz")
-	private String CrateQuiz(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
+	private String CrateQuiz( @ModelAttribute("quizmaster") DeQuizMaster quizmaster, @Valid Model model) {
 		System.out.println("The value of question number coming as---"+quizmaster.getDeqmQuestionNo());
 		if (quizmaster.getDeqmQuestionNo() == null ) {
 			quizmaster.setDeqmQuestionNo(1);
 		} 
+		
 		model.addAttribute("quizmaster", quizmaster);
 		return "createquiz";
+		
 	}
 
 	@PostMapping("/createquizstatus")
-	private String CreateQuizStatus(@ModelAttribute("quizmaster") DeQuizMaster quizmaster, Model model) {
-		System.out.println("Inside create status---"+quizmaster.getDeqmQuestionNo());
+	private String CreateQuizStatus(@Valid @ModelAttribute("quizmaster") DeQuizMaster quizmaster, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "createquiz";
+		} 
 // insert the quiz into DeQuizMaster table
 		Integer quizSrNo = quizmaster.getDeqmQuizId() * 100 + quizmaster.getDeqmQuestionNo();
 		
