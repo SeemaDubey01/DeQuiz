@@ -26,6 +26,18 @@ function clickedit(){
 	}
 }
 
+function clickaddQuestion(){
+	if($('input[name=deqmQuizId]:checked').length > 0){
+		$('#dqlOperationType').attr('value','addQuestion');
+		$('#quizform').submit();
+	}
+	else{
+		$('#errormessage').text('One quiz id needs to be selected')
+		console.log('No quizid selected')
+	}
+}
+
+
 function clickeditNew(){
 	if($('input[name=deqmQuizId]:checked').length > 0){
 		$('#dqlOperationType').attr('value','editNew');
@@ -129,11 +141,13 @@ function clickresetResult(){
 
 	<form:label path="dqlUserId"> Admin: <span>${deQuizLogin.dqlUserId}</span>Welcome to DeQuiz<br/>Now you can start creating quiz</form:label><p/>
     <form:button name="create" value="create" >Create Quiz</form:button>
+    <button name ="addQuestion" type="button" value ="" onclick="clickaddQuestion()">Add Question</button>
     <button name="view" type="button" value="view" onclick="clickview()">View Quiz</button>
     <button name="edit" type="button" value="edit" onclick="clickedit()">Edit Quiz</button>
     <button name="start" type="button" value="start" onclick="clickstart()">Start Quiz</button>
     <button name ="delete" type="button" value ="delete" onclick="clickdelete()">Delete Quiz</button></p>
     <button name ="resetResult" type="button" value ="resetResult" onclick="clickresetResult()">Reset Result</button>
+    
     <div id="errormessage" class="error"></div>
     
     <table>

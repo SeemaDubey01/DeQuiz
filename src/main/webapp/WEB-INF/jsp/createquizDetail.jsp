@@ -9,12 +9,12 @@
 </head>
 <body>
 <H2> Create Detail Quiz</H2><p/>
-<form:form action="/createquiz" method="post"  modelAttribute="quizmaster">
-<form:hidden path="dqlUserId" value ="${quizmaster.dqlUserId}"/>
-<form:hidden path="deqmQuizDesc" value ="${quizmaster.deqmQuizDesc}"/>
-<form:hidden path="deqmQuizActive" value ="${quizmaster.deqmQuizActive}"/>
-<form:hidden path="deqmTimer" value ="${quizmaster.deqmTimer}"/>
-<form:hidden path="deqmQuizId" value ="${quizmaster.deqmQuizId}"/>
+<form:form action="/createquiz" method="post"  modelAttribute="deQuizMaster">
+<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>
+<form:hidden path="deqmQuizDesc" value ="${deQuizMaster.deqmQuizDesc}"/>
+<form:hidden path="deqmQuizActive" value ="${deQuizMaster.deqmQuizActive}"/>
+<form:hidden path="deqmTimer" value ="${deQuizMaster.deqmTimer}"/>
+<form:hidden path="deqmQuizId" value ="${deQuizMaster.deqmQuizId}"/>
 
 	
 	<form:button>Create Quiz Details</form:button>

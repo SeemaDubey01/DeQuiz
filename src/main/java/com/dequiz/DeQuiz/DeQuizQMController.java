@@ -51,6 +51,34 @@ public class DeQuizQMController {
 		model.addAttribute("quizmaster", quizmaster);
 		returntype ="createquizHeader";
 		}
+		if(operationType.equalsIgnoreCase("addQuestion")) {
+			DeQuizMaster deQuizMaster = new DeQuizMaster ();
+			List<DeQuizMaster> deQuizMasterList = new ArrayList<DeQuizMaster>();
+			deQuizMasterList = dequizMasterrepo.findByDeqmQuizId(deQuizLogin.getDeqmQuizId());
+			long count = deQuizMasterList.stream().count();
+			System.out.println("count of the list is-----------------"+count);
+			System.out.println("Size of the list is------------------"+deQuizMasterList.size());
+			if(deQuizMasterList.size()>10) {
+				deQuizMaster = deQuizMasterList.stream().skip(count-1).findFirst().get();
+				//deQuizMaster = deQuizMasterList.get(1);
+				model.addAttribute("operationType", operationType);
+				model.addAttribute("deQuizMaster", deQuizMaster);
+				System.out.println("The last object is--------"+deQuizMaster);
+				returntype = "viewquiz";
+			}else
+			{
+				deQuizMaster = deQuizMasterList.stream().skip(count-1).findFirst().get();
+				Integer quizSrNo = deQuizMaster.getDeqmQuizId() * 100 + deQuizMaster.getDeqmQuestionNo();
+				
+				deQuizMaster.setDeqmSrNbr(quizSrNo);
+				dequizMasterrepo.save(deQuizMaster);
+				deQuizMaster.nextQustionNo();
+
+				System.out.println("outside create status: " + deQuizMaster);
+				model.addAttribute("deQuizMaster", deQuizMaster);
+				returntype = "createquizstatus";
+			}
+		}
 		if(operationType.equalsIgnoreCase("view")) {
 			DeQuizMaster deQuizMaster = new DeQuizMaster ();
 			List<DeQuizMaster> deQuizMasterList = new ArrayList<DeQuizMaster>();
@@ -136,19 +164,19 @@ public class DeQuizQMController {
 	}
 
 	@PostMapping("/createquizstatus")
-	private String CreateQuizStatus(@Valid @ModelAttribute("quizmaster") DeQuizMaster quizmaster, BindingResult bindingResult, Model model) {
+	private String CreateQuizStatus(@Valid @ModelAttribute("quizmaster") DeQuizMaster deQuizMaster, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "createquiz";
 		} 
 // insert the quiz into DeQuizMaster table
-		Integer quizSrNo = quizmaster.getDeqmQuizId() * 100 + quizmaster.getDeqmQuestionNo();
+		Integer quizSrNo = deQuizMaster.getDeqmQuizId() * 100 + deQuizMaster.getDeqmQuestionNo();
 		
-		quizmaster.setDeqmSrNbr(quizSrNo);
-		dequizMasterrepo.save(quizmaster);
-		quizmaster.nextQustionNo();
+		deQuizMaster.setDeqmSrNbr(quizSrNo);
+		dequizMasterrepo.save(deQuizMaster);
+		deQuizMaster.nextQustionNo();
 
-		System.out.println("outside create status: " + quizmaster);
-		model.addAttribute("quizmaster", quizmaster);
+		System.out.println("outside create status: " + deQuizMaster);
+		model.addAttribute("deQuizMaster", deQuizMaster);
 		return "createquizstatus";
 	}
 	
