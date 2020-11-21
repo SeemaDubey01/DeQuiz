@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dequiz.DeQuiz.dto.DeQuizLogin;
 import com.dequiz.DeQuiz.dto.DeQuizMaster;
@@ -32,6 +34,7 @@ import com.dequiz.DeQuiz.service.EmailConfig;
 
 
 @Controller
+@SessionAttributes({"deQuizLogin","existingDistinctQuizlist"})
 public class DeQuizAdminController {
 	
 	@Autowired
@@ -61,6 +64,8 @@ public class DeQuizAdminController {
 	
 	@PostMapping("/loginadmin")
 	public String submitForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, BindingResult bindingResult, Model model) {
+		System.out.println("Inside the logged in user---"+deQuizLogin.getDqlUserId());
+		System.out.println("Inside the logged in user---"+deQuizLogin.getDqlPassword());
 		if(deQuizLogin.getDqlUserId()!=null) {
 			DeQuizLogin dequizlogin = getAdmin(deQuizLogin.getDqlUserId());
 			
@@ -86,7 +91,6 @@ public class DeQuizAdminController {
 			model.addAttribute("existingQuizlist", existingQuizlist);
 			model.addAttribute("existingDistinctQuizlist", existingDistinctQuizlist);
 			model.addAttribute("deQuizLogin", deQuizLogin);
-			
 			return "adminregisterok";
 
 		}

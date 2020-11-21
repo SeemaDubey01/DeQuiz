@@ -3,6 +3,7 @@ package com.dequiz.DeQuiz.dto;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 @Entity
 public class DeQuizMaster {
@@ -10,10 +11,15 @@ public class DeQuizMaster {
 	private Integer deqmSrNbr;
 	private Integer deqmQuizId;
 	private Integer deqmQuestionNo;
+	@Size(min = 5, max = 200, message = "Length of question can not be less than 5 or more than 200")
 	private String deqmQuestion;
+	@Size(min = 1,max = 40, message = "Length of option can not be less than 1 or more than 40")
 	private String deqmOption_a;
+	@Size(min = 1,max = 40, message = "Length of option can not less than 1 or be more than 40")
 	private String deqmOption_b;
+	@Size(min = 1,max = 40, message = "Length of option can not be less than 1 or more than 40")
 	private String deqmOption_c;
+	@Size(min = 1,max = 40, message = "Length of option can not be less than 1 or more than 40")
 	private String deqmOption_d; 
 	private String deqmAnswer;
 	private String deqmQuizActive;
@@ -21,8 +27,8 @@ public class DeQuizMaster {
 	private String dqlUserId;
 	private String deqmQuizDesc;
 	
-	
-
+	@Transient
+    private String editType;
 	@Transient
 	private String selectedAnswer;
 	@Transient
@@ -40,6 +46,12 @@ public class DeQuizMaster {
 	
 	public String getDeqmQuizDesc() {
 		return deqmQuizDesc;
+	}
+	public String getEditType() {
+		return editType;
+	}
+	public void setEditType(String editType) {
+		this.editType = editType;
 	}
 	public void setDeqmQuizDesc(String deqmQuizDesc) {
 		this.deqmQuizDesc = deqmQuizDesc;

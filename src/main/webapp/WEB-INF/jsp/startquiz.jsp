@@ -11,8 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="/script/dequiz.js"></script>
 <link href="/CSS/dequiz.css" rel="stylesheet" type="text/css" />
+ 
 <script type="text/javascript">
-	var remainingSec = 5;
+<!--	var remainingSec = 5;
 	var marks = 1000;
 	var dispalyQuestion = "Y";
 	$("#msg").text (remainingSec);
@@ -54,7 +55,7 @@
 		},100);*/
 		//console.log("time11: " + remainingSec + " marks: " + marks);
 	},1000);
-
+ -->
 $(document).ready(function(){
   $("#quizdiv").hide();
   $("#timertable").hide();
@@ -80,7 +81,7 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="wrapper">
-<!--  page header containg heading and menu -->
+<!--  page header containing heading and menu -->
 <div align="center">
   <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
   </span> <span class="header">De Quiz</span>

@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Online Quiz for Everyone - DeQuiz</title>
 <link href="CSS/dequiz.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="script/dequiz.js"></script>
 </head>
 <body onload="MM_preloadImages('images/home_clicked.jpg','images/home_hover.jpg','images/aboutus_clicked.jpg','images/aboutus_hover.jpg','images/joinquiz_clicked.jpg','images/joinquiz_hover.jpg','images/contactus_clicked.jpg','images/contactus_hover.jpg','images/login_clicked.jpg','images/login_hover.jpg')">
@@ -37,11 +38,13 @@
 
 <div align="center">
 		<h2>Create your quiz</h2>
-		<form:form action="/createquizDetail" method="post" modelAttribute="quizmaster">
+		<form:form action="/createquizDetail" method="post" modelAttribute="deQuizMaster">
 		<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>
+		<form:hidden path="deqmQuizId" value ="${deQuizMaster.deqmQuizId}"/>
 			<table>
 			<tr>
 			<form:label path="dqlUserId"><H2> AdminId#: ${deQuizMaster.dqlUserId}</H2></form:label><p/>
+			<form:label path="deqmQuizId"><H2> Quiz#: ${deQuizMaster.deqmQuizId}</H2></form:label><p/>
 			<td><form:label path="deqmQuizDesc"> Quiz Desc: </form:label></td>
 			<td><form:input path="deqmQuizDesc"/></td> 
 			</tr>
