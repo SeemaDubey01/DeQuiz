@@ -28,22 +28,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- mssql-jdbc
-		<dependency>
-<<<<<<< HEAD
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>8.2.2.jre8</version>
-		</dependency> -->
 		<!-- mysql-jdbc -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-=======
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
->>>>>>> f138dfd2a197dff00238ae4b78a0f0176c915d46
 		</dependency>
 		
 		<dependency>

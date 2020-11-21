@@ -5,18 +5,12 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<<<<<<< HEAD
 <meta name="description" content="Online quiz for variety of topics to enhance your knowledge. Gives a platform to play along with your fiends and families. Create your own quiz or join quiz.">
 <meta name="keywords" content="Online Quiz, Online tests, dequiz, Indian quiz, entertainment, group activity">
-<title>DeQui - Create Quiz</title>
-=======
-<meta name="description" content="Online quiz for variety of topics to enhance your knowledge. Gives a platform to play along with your fiends and families. Create your own quiz or join existing quiz.">
-<meta name="keywords" content="Online Quiz, Online tests, dequiz, Indian quiz, entertainment, group activity">
+<title>DeQuiz - Create Quiz</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Online Quiz for Everyone - DeQuiz</title>
 <link href="CSS/dequiz.css" rel="stylesheet" type="text/css" />
 <script src="script/dequiz.js"></script>
->>>>>>> f138dfd2a197dff00238ae4b78a0f0176c915d46
 </head>
 <body onload="MM_preloadImages('images/home_clicked.jpg','images/home_hover.jpg','images/aboutus_clicked.jpg','images/aboutus_hover.jpg','images/joinquiz_clicked.jpg','images/joinquiz_hover.jpg','images/contactus_clicked.jpg','images/contactus_hover.jpg','images/login_clicked.jpg','images/login_hover.jpg')">
 <div class="wrapper">
