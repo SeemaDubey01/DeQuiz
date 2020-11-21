@@ -3,9 +3,11 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
+<meta name="description" content="Online quiz for variety of topics to enhance your knowledge. Gives a platform to play along with your fiends and families. Create your own quiz or join quiz.">
+<meta name="keywords" content="Online Quiz, Online tests, dequiz, Indian quiz, entertainment, group activity">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/css/dequiz.css">
 <title>JoinQuiz</title>

@@ -14,7 +14,7 @@ import com.sun.istack.NotNull;
 @Entity
 public class DeQuizUser  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer dquUserId;
 	@NotNull()
 	@QuizIdConstraint
