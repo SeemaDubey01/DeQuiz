@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.dto;
+package com.dequiz.DeQuiz.DTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-import com.dequiz.DeQuiz.validator.QuizIdConstraint;
+import com.dequiz.DeQuiz.Validator.QuizIdConstraint;
 import com.sun.istack.NotNull;
 
 

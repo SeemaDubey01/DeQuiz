@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.dto;
+package com.dequiz.DeQuiz.DTO;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

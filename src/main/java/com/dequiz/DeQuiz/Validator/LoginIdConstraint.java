@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.validator;
+package com.dequiz.DeQuiz.Validator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

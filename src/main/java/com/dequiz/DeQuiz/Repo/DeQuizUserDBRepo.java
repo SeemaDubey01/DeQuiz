@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.repo;
+package com.dequiz.DeQuiz.Repo;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.dequiz.DeQuiz.dto.DeQuizUser;
+import com.dequiz.DeQuiz.DTO.DeQuizUser;
 
 @Repository
 public interface DeQuizUserDBRepo extends JpaRepository<DeQuizUser, Integer> {

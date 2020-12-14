@@ -2,7 +2,7 @@ package com.dequiz.DeQuiz.Websocket;
 
 import java.util.List;
 
-import com.dequiz.DeQuiz.dto.DeQuizUser;
+import com.dequiz.DeQuiz.DTO.DeQuizUser;
 
 public class WSResultMessage {
 	private String wsMessageType;

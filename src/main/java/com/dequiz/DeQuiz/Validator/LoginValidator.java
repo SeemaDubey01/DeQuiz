@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.validator;
+package com.dequiz.DeQuiz.Validator;
 import java.util.Optional;
 
 import javax.validation.ConstraintValidator;
@@ -6,8 +6,8 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.dequiz.DeQuiz.dto.DeQuizLogin;
-import com.dequiz.DeQuiz.repo.DeQuizLoginDBRepo;
+import com.dequiz.DeQuiz.DTO.DeQuizLogin;
+import com.dequiz.DeQuiz.Repo.DeQuizLoginDBRepo;
 
 
 public class LoginValidator implements ConstraintValidator<LoginIdConstraint, Object> {

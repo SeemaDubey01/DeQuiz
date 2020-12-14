@@ -91,7 +91,7 @@ $(document).ready(function(){
 <h3>the logged in  user is ${sessionScope.deQuizLogin.dqlUserId}</h3>
 <div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
-<form:form id="quizform" action="/getNextQuestioin"  method="post" modelAttribute="deQuizMaster">
+<form:form id="quizform" action="getNextQuestioin"  method="post" modelAttribute="deQuizMaster">
   <div>${deQuizMaster.deqmQuestionNo}.  ${deQuizMaster.deqmQuestion}</div>
   
   <form:hidden path="deqmQuizId" value="${deQuizMaster.deqmQuizId}"/>

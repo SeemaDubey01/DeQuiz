@@ -3,10 +3,11 @@ package com.dequiz.DeQuiz.Websocket;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.dequiz.DeQuiz.dto.DeQuizMaster;
-import com.dequiz.DeQuiz.dto.DeQuizUser;
-import com.dequiz.DeQuiz.repo.DeQuizMasterDBRepo;
-import com.dequiz.DeQuiz.repo.DeQuizUserDBRepo;
+
+import com.dequiz.DeQuiz.DTO.DeQuizMaster;
+import com.dequiz.DeQuiz.DTO.DeQuizUser;
+import com.dequiz.DeQuiz.Repo.DeQuizMasterDBRepo;
+import com.dequiz.DeQuiz.Repo.DeQuizUserDBRepo;
 
 @Component
 public class WebSocketDeQuizUserDAO {

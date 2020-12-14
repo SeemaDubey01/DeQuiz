@@ -1,11 +1,11 @@
-package com.dequiz.DeQuiz.dto;
+package com.dequiz.DeQuiz.DTO;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-import com.dequiz.DeQuiz.validator.ExtendedEmailValidator;
+import com.dequiz.DeQuiz.Validator.ExtendedEmailValidator;
 
 @Entity
 public class DeQuizLogin {
