@@ -14,7 +14,6 @@
 <script src="/script/dequiz.js"></script>
 </head>
 <body>
-<div class="wrapper">
 <!--  page header containg heading and menu -->
 <div id="headerpage"></div>
 <!--  content block -->
@@ -43,6 +42,5 @@
 <!--  Footer -->
 <div id="footerpage" class="footer"></div>
 <!--  end of Footer -->
-</div>
 </body>
 </html>

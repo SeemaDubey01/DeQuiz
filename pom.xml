@@ -69,24 +69,22 @@
 		</dependency>
 
 		<!-- Optional, test for static content, bootstrap CSS -->
-		<dependency>
+		<!-- dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
-		</dependency>
+		</dependency-->
 		<!--  DevTools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
+		</dependency>	
 		
-		
-		
-		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api >
 		<dependency>
     		<groupId>javax.xml.bind</groupId>
     		<artifactId>jaxb-api</artifactId>
-		</dependency>
+		</dependency-->
 
 		<!-- Websocket dependency -->
 		<dependency>
@@ -103,15 +101,12 @@
 			<artifactId>spring-boot-starter-activemq</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
-		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+		
 		<dependency> 
-    <groupId>io.vavr</groupId> 
-    <artifactId>vavr</artifactId> 
-    <version>0.9.0</version>  
-</dependency>
+		    <groupId>io.vavr</groupId> 
+		    <artifactId>vavr</artifactId> 
+		    <version>0.9.0</version>  
+		</dependency>
 
 <dependency>
     <groupId>org.javassist</groupId>
@@ -120,6 +115,16 @@
 </dependency>
 
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

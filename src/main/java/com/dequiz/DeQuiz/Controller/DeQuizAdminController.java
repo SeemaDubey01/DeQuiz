@@ -1,8 +1,5 @@
  package com.dequiz.DeQuiz.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.dequiz.DeQuiz.DTO.DeQuizLogin;
-import com.dequiz.DeQuiz.DTO.DeQuizMaster;
-import com.dequiz.DeQuiz.Repo.DeQuizLoginDBRepo;
-import com.dequiz.DeQuiz.Repo.DeQuizMasterDBRepo;
-import com.dequiz.DeQuiz.Servie.DeQuizDBService;
+import com.dequiz.DeQuiz.Service.DeQuizDBService;
 
 
 @Controller
@@ -29,8 +22,9 @@ public class DeQuizAdminController {
 	private DeQuizDBService deQuizDBService;
 	
 	/* Display login page for QuizMaster */
-	@GetMapping("/adminlogin")
+	@GetMapping("/login")
 	private String showForm(@Valid Model model) {
+		System.out.println("inside login page");
 		DeQuizLogin deQuizLogin = new DeQuizLogin();
 		model.addAttribute("deQuizLogin", deQuizLogin);
 		return "adminLogin";

@@ -111,7 +111,6 @@ function clickresetResult(){
 </script>
 </head>
 <body>
-<div class="wrapper">
 <div id="headerpage"></div>
 <!--  content block -->
 <div class="content-window">
@@ -156,10 +155,7 @@ function clickresetResult(){
 </div>
 <!--  end of content block -->
 <!--  Footer -->
-<div class="footer">
-&copy; DeQuiz India
-</div>
+<div id="footerpage"></div>
 <!--  end of Footer -->
-</div>
 </body>
 </html>

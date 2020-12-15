@@ -81,7 +81,7 @@ function clicknext(){
 <h1>Start Quiz</h1>
 <div align="center" style="font-size:min(5vw,40);">
 <!--  question number and question -->
-<form:form id="quizform" action="/getNextQuestioinEdit"  method="post" modelAttribute="deQuizMaster">
+<form:form id="quizform" action="getNextQuestioinEdit"  method="post" modelAttribute="deQuizMaster">
   <div id = "questiondiv">${deQuizMaster.deqmQuestionNo}.  ${deQuizMaster.deqmQuestion}</div>
   <div id = "questiondivEdit" hidden="true">${deQuizMaster.deqmQuestionNo}. 
   <form:input path="deqmQuestion" value = "${deQuizMaster.deqmQuestion}" maxlength="90px"/></div>

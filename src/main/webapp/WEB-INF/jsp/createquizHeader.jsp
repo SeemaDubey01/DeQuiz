@@ -38,7 +38,7 @@
 
 <div align="center">
 		<h2>Create your quiz</h2>
-		<form:form action="/createquizDetail" method="post" modelAttribute="deQuizMaster">
+		<form:form action="createquizDetail" method="post" modelAttribute="deQuizMaster">
 		<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>
 		<form:hidden path="deqmQuizId" value ="${deQuizMaster.deqmQuizId}"/>
 			<table>

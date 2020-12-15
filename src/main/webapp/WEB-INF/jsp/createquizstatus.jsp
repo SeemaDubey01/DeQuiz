@@ -36,7 +36,7 @@
 <div class="content-window">
 <div align="center">
 <H2> Create Quiz Status</H2><p/>
-<form:form action="/createquiz" method="post"  modelAttribute="deQuizMaster">
+<form:form action="createquiz" method="post"  modelAttribute="deQuizMaster">
 	<form:hidden path="deqmQuizId" value ="${deQuizMaster.deqmQuizId}"/>
 	<form:hidden path="deqmQuestionNo" value ="${deQuizMaster.deqmQuestionNo}"/>
 	<form:hidden path="dqlUserId" value ="${deQuizMaster.dqlUserId}"/>

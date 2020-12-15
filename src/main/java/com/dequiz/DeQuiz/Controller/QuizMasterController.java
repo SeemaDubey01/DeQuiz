@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dequiz.DeQuiz.DTO.DeQuizLogin;
 import com.dequiz.DeQuiz.DTO.DeQuizMaster;
-import com.dequiz.DeQuiz.Servie.DeQuizDBService;
+import com.dequiz.DeQuiz.Service.DeQuizDBService;
 import com.dequiz.DeQuiz.Websocket.WebSocketDAO;
 
 
@@ -31,7 +32,31 @@ public class QuizMasterController {
 	
 	@Autowired
 	WebSocketDAO wsMessageDAO;
+	
+	@GetMapping("/")
+	public String Home() {
+		System.out.println("home page of QuizMaster");
+		return("QMhome");
+	}
 
+	@GetMapping("/adminlogin")
+	public String loggedInForm(Authentication authentication, Model model) {
+		DeQuizLogin deQuizLogin = deQuizDBService.getAdmin(authentication.getName());
+		
+		List<DeQuizMaster> existingQuizlist = new ArrayList<DeQuizMaster>();
+		List<DeQuizMaster> existingDistinctQuizlist = new ArrayList<DeQuizMaster>();
+		
+		existingQuizlist=deQuizDBService.getExistingQuizes(authentication.getName());
+		existingDistinctQuizlist = io.vavr.collection.List.ofAll(existingQuizlist)
+					  .distinctBy(DeQuizMaster::getDeqmQuizId)
+					  .toJavaList();
+		
+		model.addAttribute("existingQuizlist", existingQuizlist);
+		model.addAttribute("existingDistinctQuizlist", existingDistinctQuizlist);
+		model.addAttribute("deQuizLogin", deQuizLogin);
+		return "adminregisterok";
+	}
+	
 	@PostMapping("/loginCheck")
 	public String submitForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLoginPara, BindingResult bindingResult, Model model) {
 		if(deQuizLoginPara.getDqlUserId()!=null) {

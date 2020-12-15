@@ -1,4 +1,4 @@
-package com.dequiz.DeQuiz.Servie;
+package com.dequiz.DeQuiz.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +29,7 @@ public class DeQuizDBService {
 		deQuizLogin.setDqlPassword(" ");
 		if(deQuizLoginMap.isPresent()) {
 			deQuizLogin = deQuizLoginMap.get();
+System.out.println("debug: getAdmin for " + deQuizLogin.getDqlUserId());
 		}
 		return deQuizLogin;
 	}
