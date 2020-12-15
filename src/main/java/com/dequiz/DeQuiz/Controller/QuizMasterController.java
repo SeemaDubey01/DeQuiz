@@ -38,7 +38,13 @@ public class QuizMasterController {
 		System.out.println("home page of QuizMaster");
 		return("QMhome");
 	}
-
+	
+	@GetMapping("/login")
+	public String loginPage() {
+		System.out.println("going to login page");
+		return("adminLogin");
+	}
+	
 	@GetMapping("/adminlogin")
 	public String loggedInForm(Authentication authentication, Model model) {
 		DeQuizLogin deQuizLogin = deQuizDBService.getAdmin(authentication.getName());
@@ -56,7 +62,7 @@ public class QuizMasterController {
 		model.addAttribute("deQuizLogin", deQuizLogin);
 		return "adminregisterok";
 	}
-	
+	/*
 	@PostMapping("/loginCheck")
 	public String submitForm(@Valid @ModelAttribute("deQuizLogin") DeQuizLogin deQuizLoginPara, BindingResult bindingResult, Model model) {
 		if(deQuizLoginPara.getDqlUserId()!=null) {
@@ -86,7 +92,7 @@ public class QuizMasterController {
 			return "adminregisterok";
 		}
 	}
-
+*/
 	
 	@PostMapping("/createquizHeader")
 	private String createQuizHeader(@ModelAttribute("deQuizLogin") DeQuizLogin deQuizLogin, Model model, HttpSession session) {

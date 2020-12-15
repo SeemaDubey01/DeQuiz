@@ -30,6 +30,12 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/").permitAll()
 			.and()
 			.formLogin()
+			.loginPage("/QuizMaster/login").permitAll()
+			.and()
+			.logout().invalidateHttpSession(true)
+			.logoutSuccessUrl("/index.html")
+			.and()
+			.csrf().disable()
 			;
 	}
 	

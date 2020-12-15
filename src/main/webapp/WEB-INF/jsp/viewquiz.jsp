@@ -80,10 +80,7 @@ $(document).ready(function(){
 <body>
 <div class="wrapper">
 <!--  page header containing heading and menu -->
-<div align="center">
-  <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
-  </span> <span class="header">De Quiz</span>
-</div>
+<div id="headerpage"></div>
 <!--  end of page header -->
 <!--  content block -->
 <div class="content-window">

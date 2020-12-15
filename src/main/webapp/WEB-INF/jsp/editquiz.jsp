@@ -71,10 +71,7 @@ function clicknext(){
 <body>
 <div class="wrapper">
 <!--  page header containing heading and menu -->
-<div align="center">
-  <span ><img src="images/dqlogo.jpg" alt="De Quiz" name="DeQuizLogo" width="80" height="80" id="DeQuizLogo" />
-  </span> <span class="header">De Quiz</span>
-</div>
+<div id="headerpage"></div>
 <!--  end of page header -->
 <!--  content block -->
 <div class="content-window">
@@ -130,9 +127,7 @@ function clicknext(){
 </div>
 <!--  End of content block -->
 <!--  Footer -->
-<div class="footer">
-&copy; DeQuiz India 
-</div>
+<div id="footerpage"></div>
 <!--  end of Footer -->
 
 </div>

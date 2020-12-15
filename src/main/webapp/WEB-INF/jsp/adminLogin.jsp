@@ -20,21 +20,22 @@
 <div class="content-window">
 <H1>Admin Login</H1><p/>
 <div align="center" style="font-size:min(5vw,40);">
+		
+		<form action="login" method="POST">
 		<table>
-		<form:form action="/QuizMaster/loginCheck" method="post" modelAttribute="deQuizLogin">
 		<tr>
-			<td><form:label path="dqlUserId">User ID#:</form:label></td>
-			<td><form:input path="dqlUserId"  /></td>
-			<td><form:errors path="dqlUserId" cssClass="error" /></td>
+			<td>User ID#</td>
+			<td><input name="username"  /></td>
+			<td>${SPRING_SECURITY_LAST_EXCEPTION.message}</td>
 		</tr><tr>
-			<td><form:label path="dqlPassword">Password:</form:label></td>
-			<td><form:password path="dqlPassword" /></td>
-			<td><form:errors path="dqlPassword" cssClass="error" /></td>
+			<td>Password:</td>
+			<td><input type="password" name="password" /></td>
 		</tr>
-		<tr><td colspan="3" align="center"><form:button>submit</form:button></td></tr><tr><td><p/></td></tr>
+		<tr><td colspan="3" align="center"><button type="submit">submit</button></td>
 		<tr><td colspan="3" align="center"><a href="/signUp">Not Registered SignUp Here</a></td></tr>
-		</form:form>
 		</table>
+		</form>
+		
 	</div>
 	<br/><br/>
 </div>

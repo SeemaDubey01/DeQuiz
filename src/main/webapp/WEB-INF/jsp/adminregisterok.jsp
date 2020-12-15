@@ -114,7 +114,7 @@ function clickresetResult(){
 <div id="headerpage"></div>
 <!--  content block -->
 <div class="content-window">
-<H2>Registration Status <span></span></H2>
+<H2>Registration Status <span></span></H2><h2 style="text-align:right;"><a href="/logout">Logout</a></h2>
 <div align="center" style="font-size:min(5vw,40);">
 <form:form action="createquizHeader" method= "post" id="quizform" modelAttribute="deQuizLogin">
 <form:hidden path="dqlUserId" value ="${deQuizLogin.dqlUserId}"/>

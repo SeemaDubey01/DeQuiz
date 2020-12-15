@@ -57,4 +57,6 @@ public class JoinController {
 			return "userInQuiz";
 		}
 	}
+	
+	
 }
